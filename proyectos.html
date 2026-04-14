@@ -4,107 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PROYECTOS | Rubén Alarcón</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="projects-page">
+<body class="gallery-view">
 
-    <nav class="nav-top">
-        <a href="index.html" class="back-btn">← INICIO</a>
-        <span class="brand-tag">NANCY STYLE</span>
+    <nav class="nav-minimal">
+        <a href="index.html">← VOLVER</a>
+        <span>PORTAFOLIO VISUAL</span>
     </nav>
 
-    <main class="gallery-container">
-        <section class="project-strip">
-            <div class="project-number">01</div>
-            <div class="project-content">
-                <h2>DISEÑO EDITORIAL</h2>
-                <p>Maquetación de alto nivel para revistas corporativas.</p>
-            </div>
-            <div class="project-view">VIEW PROJECT</div>
-        </section>
+    <div class="visual-grid">
+        <div class="grid-item" onclick="openFull(this)"><img src="https://via.placeholder.com/800x1000/111/444?text=TRABAJO+01"></div>
+        <div class="grid-item" onclick="openFull(this)"><img src="https://via.placeholder.com/800x1000/111/444?text=TRABAJO+02"></div>
+        <div class="grid-item" onclick="openFull(this)"><img src="https://via.placeholder.com/800x1000/111/444?text=TRABAJO+03"></div>
+        <div class="grid-item" onclick="openFull(this)"><img src="https://via.placeholder.com/800x1000/111/444?text=TRABAJO+04"></div>
+        <div class="grid-item" onclick="openFull(this)"><img src="https://via.placeholder.com/800x1000/111/444?text=TRABAJO+05"></div>
+        <div class="grid-item" onclick="openFull(this)"><img src="https://via.placeholder.com/800x1000/111/444?text=TRABAJO+06"></div>
+        <div class="grid-item" onclick="openFull(this)"><img src="https://via.placeholder.com/800x1000/111/444?text=TRABAJO+07"></div>
+        <div class="grid-item" onclick="openFull(this)"><img src="https://via.placeholder.com/800x1000/111/444?text=TRABAJO+08"></div>
+        <div class="grid-item" onclick="openFull(this)"><img src="https://via.placeholder.com/800x1000/111/444?text=TRABAJO+09"></div>
+        <div class="grid-item" onclick="openFull(this)"><img src="https://via.placeholder.com/800x1000/111/444?text=TRABAJO+10"></div>
+    </div>
 
-        <section class="project-strip">
-            <div class="project-number">02</div>
-            <div class="project-content">
-                <h2>IDENTIDAD VISUAL</h2>
-                <p>Sistemas de marca para empresas tecnológicas.</p>
-            </div>
-            <div class="project-view">VIEW PROJECT</div>
-        </section>
+    <div id="viewer" onclick="this.style.display='none'">
+        <img id="full-img">
+    </div>
 
-        <section class="project-strip">
-            <div class="project-number">03</div>
-            <div class="project-content">
-                <h2>UI/UX INTERFACE</h2>
-                <p>Arquitectura de información y diseño de aplicaciones.</p>
-            </div>
-            <div class="project-view">VIEW PROJECT</div>
-        </section>
-
-        <section class="project-strip">
-            <div class="project-number">04</div>
-            <div class="project-content">
-                <h2>ESTRATEGIA DIGITAL</h2>
-                <p>Planificación de contenidos y posicionamiento.</p>
-            </div>
-            <div class="project-view">VIEW PROJECT</div>
-        </section>
-
-        <section class="project-strip">
-            <div class="project-number">05</div>
-            <div class="project-content">
-                <h2>DISEÑO DE PACKAGING</h2>
-                <p>Empaques premium con acabados especiales.</p>
-            </div>
-            <div class="project-view">VIEW PROJECT</div>
-        </section>
-
-        <section class="project-strip">
-            <div class="project-number">06</div>
-            <div class="project-content">
-                <h2>SOCIAL MEDIA PRO</h2>
-                <p>Gestión visual de canales oficiales.</p>
-            </div>
-            <div class="project-view">VIEW PROJECT</div>
-        </section>
-
-        <section class="project-strip">
-            <div class="project-number">07</div>
-            <div class="project-content">
-                <h2>DIRECCIÓN DE ARTE</h2>
-                <p>Conceptualización de campañas publicitarias.</p>
-            </div>
-            <div class="project-view">VIEW PROJECT</div>
-        </section>
-
-        <section class="project-strip">
-            <div class="project-number">08</div>
-            <div class="project-content">
-                <h2>FOTOGRAFÍA TECH</h2>
-                <p>Retoque y post-producción de producto.</p>
-            </div>
-            <div class="project-view">VIEW PROJECT</div>
-        </section>
-
-        <section class="project-strip">
-            <div class="project-number">09</div>
-            <div class="project-content">
-                <h2>MOTION GRAPHICS</h2>
-                <p>Animación de logos y piezas digitales.</p>
-            </div>
-            <div class="project-view">VIEW PROJECT</div>
-        </section>
-
-        <section class="project-strip">
-            <div class="project-number">10</div>
-            <div class="project-content">
-                <h2>ASESORÍA SENIOR</h2>
-                <p>Consultoría de diseño para nuevos negocios.</p>
-            </div>
-            <div class="project-view">VIEW PROJECT</div>
-        </section>
-    </main>
-
+    <script>
+        function openFull(el) {
+            document.getElementById('full-img').src = el.querySelector('img').src;
+            document.getElementById('viewer').style.display = 'flex';
+        }
+    </script>
 </body>
 </html>
