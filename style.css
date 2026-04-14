@@ -8,6 +8,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    overflow: hidden;
 }
 
 .container {
@@ -20,7 +21,7 @@ h1 {
     font-weight: 100;
     font-size: 3.5rem;
     letter-spacing: -2px;
-    line-height: 0.9; /* Esto cierra el espacio entre líneas */
+    line-height: 0.85;
     text-transform: uppercase;
 }
 
@@ -37,7 +38,43 @@ h1 {
     font-weight: 300;
     font-size: 0.7rem;
     color: #444;
-    margin-top: 10px;
+    margin-top: 15px;
     letter-spacing: 2px;
     text-transform: uppercase;
+}
+
+/* MENÚ LATERAL - NANCY STYLE */
+.side-menu {
+    position: fixed;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.btn-nancy {
+    background: transparent;
+    border: 1px solid #333;
+    color: #888;
+    padding: 15px 30px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 300;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateX(50%); /* Solo se ve la mitad */
+    text-align: left;
+}
+
+.btn-nancy:hover {
+    transform: translateX(0); /* Se desliza hacia afuera */
+    color: #f5f5f5;
+    border-color: #666;
+    background-color: #111;
+}
+
+.btn-nancy span {
+    margin-left: 10px;
 }
