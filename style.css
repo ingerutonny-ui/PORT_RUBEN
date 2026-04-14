@@ -1,27 +1,230 @@
-/* BASE */
+/* --- FUNDAMENTOS NANCY STYLE 2.0 --- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { background: #050505; color: #fff; font-family: 'Inter', sans-serif; }
 
-/* PORTADA (INDEX) */
-.container { height: 100vh; display: flex; flex-direction: column; justify-content: center; padding-left: 10%; border-left: 1px solid #222; margin-left: 5%; animation: fadeIn 1.5s ease-out; }
-@keyframes fadeIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
-h1 { font-weight: 100; font-size: 3.5rem; letter-spacing: -2px; line-height: 0.85; text-transform: uppercase; }
-.subtitle { font-weight: 300; font-size: 0.7rem; color: #666; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 10px; }
-.footer-text { font-weight: 300; font-size: 0.7rem; color: #444; margin-top: 20px; letter-spacing: 2px; text-transform: uppercase; }
+body {
+    background-color: #050505; /* Un negro más profundo */
+    color: #e0e0e0; /* Gris platino suave */
+    font-family: 'Inter', -apple-system, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
 
-/* BOTONES LATERALES */
-.side-menu { position: fixed; right: 0; top: 30%; display: flex; flex-direction: column; gap: 10px; }
-.btn-nancy { background: #0d0d0d; border: 1px solid #222; color: #888; padding: 15px 30px; font-size: 0.6rem; letter-spacing: 3px; cursor: pointer; transition: 0.5s; transform: translateX(60%); border-radius: 5px 0 0 5px; }
-.btn-nancy:hover { transform: translateX(0); color: #fff; border-color: #444; }
+/* PALETA DE COLORES */
+:root {
+    --bg-dark: #050505;
+    --bg-card: #0d0d0d;
+    --text-main: #e0e0e0;
+    --text-muted: #777;
+    --accent: #00f2fe; /* Cyan Eléctrico - El toque de sorpresa */
+    --border: #1a1a1a;
+}
 
-/* GALERÍA PROYECTOS */
-.nav-minimal { padding: 40px; display: flex; justify-content: space-between; font-size: 0.6rem; letter-spacing: 4px; color: #444; }
-.nav-minimal a { color: #666; text-decoration: none; }
+/* --- ESTILOS DE PORTADA (index.html) --- */
+/* (Mantenemos la estructura para no romper la portada que te gustó) */
+body:not(.projects-showcase) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
 
-.visual-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 10px; padding: 20px; }
-.grid-item { aspect-ratio: 1/1; overflow: hidden; cursor: pointer; border: 1px solid #1a1a1a; }
-.grid-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; filter: grayscale(100%); }
-.grid-item:hover img { filter: grayscale(0%); transform: scale(1.05); }
+.container {
+    text-align: left;
+    border-left: 1px solid var(--border);
+    padding-left: 40px;
+    animation: nancyEntrance 1.8s cubic-bezier(0.2, 0, 0.2, 1) forwards;
+}
 
-#viewer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: none; align-items: center; justify-content: center; z-index: 100; }
-#full-img { max-width: 90%; max-height: 90%; border: 1px solid #333; }
+@keyframes nancyEntrance {
+    from { opacity: 0; transform: translateX(-30px); filter: blur(5px); }
+    to { opacity: 1; transform: translateX(0); filter: blur(0); }
+}
+
+h1 {
+    font-weight: 100;
+    font-size: 3.5rem;
+    letter-spacing: -2px;
+    line-height: 0.85;
+    text-transform: uppercase;
+}
+
+.subtitle {
+    font-weight: 300;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.footer-text {
+    font-weight: 300;
+    font-size: 0.7rem;
+    color: #444;
+    margin-top: 15px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* MENÚ LATERAL - CON AJUSTE DE COLOR ACENTO */
+.side-menu {
+    position: fixed;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.btn-nancy {
+    background: transparent;
+    border: 1px solid #222;
+    color: #555;
+    padding: 15px 35px;
+    font-size: 0.6rem;
+    font-weight: 300;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateX(65%);
+    text-align: left;
+    border-radius: 4px;
+}
+
+.btn-nancy:hover {
+    transform: translateX(0);
+    color: var(--accent); /* Hover con Cyan Eléctrico */
+    border-color: var(--accent);
+    background-color: #0d0d0d;
+}
+
+/* --- NUEVA GALERÍA DE PROYECTOS IMPACTO (proyectos.html) --- */
+.projects-showcase {
+    padding: 60px 20px;
+}
+
+.projects-header {
+    max-width: 1400px;
+    margin: 0 auto 80px auto;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 40px;
+    position: relative;
+}
+
+.back-link {
+    display: inline-block;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+    transition: color 0.3s ease;
+}
+
+.back-link:hover {
+    color: var(--accent);
+}
+
+.projects-header h1 {
+    font-weight: 700; /* Más audaz para cabecera */
+    font-size: 3rem;
+    letter-spacing: -1px;
+    color: var(--text-main);
+}
+
+.projects-grid {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Gap entre franjas */
+}
+
+.project-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 50% imagen, 50% texto */
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.4s ease, border-color 0.4s ease;
+}
+
+.project-item:hover {
+    transform: translateY(-5px);
+    border-color: #333;
+}
+
+.project-media {
+    width: 100%;
+    height: 400px; /* Altura fija para consistencia */
+}
+
+.img-placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: #111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+    font-size: 0.8rem;
+    letter-spacing: 4px;
+    border-right: 1px solid var(--border);
+}
+
+.project-details {
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.proj-category {
+    font-size: 0.65rem;
+    color: var(--accent); /* Color de sorpresa */
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+
+.project-details h2 {
+    font-weight: 300;
+    font-size: 2.2rem;
+    letter-spacing: -1px;
+    line-height: 1.2;
+    margin-bottom: 15px;
+    color: var(--text-main);
+}
+
+.project-details p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    max-width: 400px;
+}
+
+.projects-footer {
+    max-width: 1400px;
+    margin: 100px auto 0 auto;
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: #444;
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+/* RESPONSIVE - Para asegurar que se vea bien en cualquier pantalla */
+@media (max-width: 900px) {
+    .project-item {
+        grid-template-columns: 1fr;
+    }
+    .project-media {
+        height: 250px;
+    }
+    .project-details {
+        padding: 30px;
+    }
+}
