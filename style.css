@@ -1,4 +1,4 @@
-/* Configuración Maestra - Nancy Style */
+/* Configuración Maestra - Nancy Style - PORTAFOLIO_RUBEN */
 * {
     margin: 0;
     padding: 0;
@@ -6,8 +6,8 @@
 }
 
 body {
-    background-color: #0a0a0a; /* Negro Profundo */
-    color: #f5f5f5;           /* Gris Platino */
+    background-color: #0a0a0a;
+    color: #f5f5f5;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     display: flex;
     justify-content: center;
@@ -18,17 +18,19 @@ body {
 
 .container {
     text-align: left;
-    border-left: 2px solid #333;
+    border-left: 1px solid #333;
     padding-left: 40px;
     animation: fadeIn 1.5s ease-in-out;
 }
 
+/* El ajuste margin: 0 asegura que no existan espacios extra */
 h1 {
     font-weight: 100;
     font-size: 3.5rem;
     letter-spacing: -1px;
     line-height: 1;
     text-transform: uppercase;
+    margin: 0; 
 }
 
 .subtitle {
@@ -37,14 +39,15 @@ h1 {
     color: #666;
     letter-spacing: 6px;
     text-transform: uppercase;
-    margin-bottom: 3px; /* Corrección de doble espacio */
+    margin-bottom: 10px;
 }
 
+/* El margin-top controlado une visualmente el bloque */
 .footer-text {
     font-weight: 300;
-    font-size: 0.65rem;
+    font-size: 0.7rem;
     color: #444;
-    margin-top: 40px;
+    margin-top: 15px; 
     letter-spacing: 3px;
     text-transform: uppercase;
 }
