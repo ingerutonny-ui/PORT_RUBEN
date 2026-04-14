@@ -1,43 +1,38 @@
-/* --- FUNDAMENTOS NANCY STYLE 2.0 --- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    background-color: #050505; /* Un negro más profundo */
-    color: #e0e0e0; /* Gris platino suave */
-    font-family: 'Inter', -apple-system, sans-serif;
-    line-height: 1.6;
-    overflow-x: hidden;
-}
-
-/* PALETA DE COLORES */
-:root {
-    --bg-dark: #050505;
-    --bg-card: #0d0d0d;
-    --text-main: #e0e0e0;
-    --text-muted: #777;
-    --accent: #00f2fe; /* Cyan Eléctrico - El toque de sorpresa */
-    --border: #1a1a1a;
-}
-
-/* --- ESTILOS DE PORTADA (index.html) --- */
-/* (Mantenemos la estructura para no romper la portada que te gustó) */
-body:not(.projects-showcase) {
+    background-color: #0a0a0a;
+    color: #f5f5f5;
+    font-family: 'Inter', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    overflow: hidden;
 }
 
 .container {
     text-align: left;
-    border-left: 1px solid var(--border);
+    border-left: 1px solid #333;
     padding-left: 40px;
+}
+
+/* EFECTO DE ENTRADA PROGRESIVA */
+.fade-in-left {
     animation: nancyEntrance 1.8s cubic-bezier(0.2, 0, 0.2, 1) forwards;
 }
 
 @keyframes nancyEntrance {
-    from { opacity: 0; transform: translateX(-30px); filter: blur(5px); }
-    to { opacity: 1; transform: translateX(0); filter: blur(0); }
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+        filter: blur(5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+        filter: blur(0);
+    }
 }
 
 h1 {
@@ -51,7 +46,7 @@ h1 {
 .subtitle {
     font-weight: 300;
     font-size: 0.7rem;
-    color: var(--text-muted);
+    color: #666;
     letter-spacing: 5px;
     text-transform: uppercase;
     margin-bottom: 5px;
@@ -66,7 +61,7 @@ h1 {
     text-transform: uppercase;
 }
 
-/* MENÚ LATERAL - CON AJUSTE DE COLOR ACENTO */
+/* MENÚ LATERAL - NANCY STYLE CON AJUSTE SOLICITADO */
 .side-menu {
     position: fixed;
     right: 0;
@@ -80,6 +75,7 @@ h1 {
     border: 1px solid #222;
     color: #555;
     padding: 15px 35px;
+    font-family: 'Inter', sans-serif;
     font-size: 0.6rem;
     font-weight: 300;
     letter-spacing: 4px;
@@ -88,143 +84,20 @@ h1 {
     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     transform: translateX(65%);
     text-align: left;
-    border-radius: 4px;
+    
+    /* MODIFICACIONES SOLICITADAS */
+    border-radius: 4px; /* Esquinas sutilmente redondeadas */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Sombra leve en reposo */
 }
 
 .btn-nancy:hover {
     transform: translateX(0);
-    color: var(--accent); /* Hover con Cyan Eléctrico */
-    border-color: var(--accent);
+    color: #fff;
+    border-color: #555;
     background-color: #0d0d0d;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8); /* Sombra más pronunciada en hover */
 }
 
-/* --- NUEVA GALERÍA DE PROYECTOS IMPACTO (proyectos.html) --- */
-.projects-showcase {
-    padding: 60px 20px;
-}
-
-.projects-header {
-    max-width: 1400px;
-    margin: 0 auto 80px auto;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 40px;
-    position: relative;
-}
-
-.back-link {
-    display: inline-block;
-    color: var(--text-muted);
-    text-decoration: none;
-    font-size: 0.7rem;
-    letter-spacing: 3px;
-    margin-bottom: 20px;
-    transition: color 0.3s ease;
-}
-
-.back-link:hover {
-    color: var(--accent);
-}
-
-.projects-header h1 {
-    font-weight: 700; /* Más audaz para cabecera */
-    font-size: 3rem;
-    letter-spacing: -1px;
-    color: var(--text-main);
-}
-
-.projects-grid {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 30px; /* Gap entre franjas */
-}
-
-.project-item {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* 50% imagen, 50% texto */
-    background-color: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-    transition: transform 0.4s ease, border-color 0.4s ease;
-}
-
-.project-item:hover {
-    transform: translateY(-5px);
-    border-color: #333;
-}
-
-.project-media {
-    width: 100%;
-    height: 400px; /* Altura fija para consistencia */
-}
-
-.img-placeholder {
-    width: 100%;
-    height: 100%;
-    background-color: #111;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #333;
-    font-size: 0.8rem;
-    letter-spacing: 4px;
-    border-right: 1px solid var(--border);
-}
-
-.project-details {
-    padding: 60px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.proj-category {
-    font-size: 0.65rem;
-    color: var(--accent); /* Color de sorpresa */
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    font-weight: 400;
-    margin-bottom: 15px;
-}
-
-.project-details h2 {
-    font-weight: 300;
-    font-size: 2.2rem;
-    letter-spacing: -1px;
-    line-height: 1.2;
-    margin-bottom: 15px;
-    color: var(--text-main);
-}
-
-.project-details p {
-    font-size: 0.95rem;
-    color: var(--text-muted);
-    max-width: 400px;
-}
-
-.projects-footer {
-    max-width: 1400px;
-    margin: 100px auto 0 auto;
-    padding-top: 40px;
-    border-top: 1px solid var(--border);
-    text-align: center;
-    color: #444;
-    font-size: 0.65rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-}
-
-/* RESPONSIVE - Para asegurar que se vea bien en cualquier pantalla */
-@media (max-width: 900px) {
-    .project-item {
-        grid-template-columns: 1fr;
-    }
-    .project-media {
-        height: 250px;
-    }
-    .project-details {
-        padding: 30px;
-    }
+.btn-nancy span {
+    margin-left: 10px;
 }
