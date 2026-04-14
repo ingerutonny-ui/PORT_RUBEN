@@ -37,7 +37,7 @@ h1 {
     color: #666;
     letter-spacing: 6px;
     text-transform: uppercase;
-    margin-bottom: 5; /* Corrección de doble espacio */
+    margin-bottom: 3px; /* Corrección de doble espacio */
 }
 
 .footer-text {
