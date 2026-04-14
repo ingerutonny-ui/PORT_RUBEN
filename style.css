@@ -86,7 +86,7 @@ h1 {
     text-align: left;
     
     /* MODIFICACIONES SOLICITADAS */
-    border-radius: 4px; /* Esquinas sutilmente redondeadas */
+    border-radius: 6px; /* Esquinas sutilmente redondeadas */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Sombra leve en reposo */
 }
 
