@@ -15,11 +15,11 @@
     </nav>
 
     <div class="visual-grid">
-        <div class="grid-item" onclick="openFull(this)"><img src="img/001.png" alt="Proyecto 001"></div>
-        <div class="grid-item" onclick="openFull(this)"><img src="img/002.png" alt="Proyecto 002"></div>
-        <div class="grid-item" onclick="openFull(this)"><img src="img/003.png" alt="Proyecto 003"></div>
-        <div class="grid-item" onclick="openFull(this)"><img src="img/004.png" alt="Proyecto 004"></div>
-    </div>
+        <div class="grid-item" onclick="openFull(this)"><img src="img/001.png" alt="Diseño 001"></div>
+        <div class="grid-item" onclick="openFull(this)"><img src="img/002.png" alt="Diseño 002"></div>
+        <div class="grid-item" onclick="openFull(this)"><img src="img/003.png" alt="Diseño 003"></div>
+        <div class="grid-item" onclick="openFull(this)"><img src="img/004.png" alt="Diseño 004"></div>
+        </div>
 
     <div id="viewer" onclick="this.style.display='none'">
         <img id="full-img">
@@ -27,7 +27,8 @@
 
     <script>
         function openFull(el) {
-            document.getElementById('full-img').src = el.querySelector('img').src;
+            const fullImg = document.getElementById('full-img');
+            fullImg.src = el.querySelector('img').src;
             document.getElementById('viewer').style.display = 'flex';
         }
     </script>
