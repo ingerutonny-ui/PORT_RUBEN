@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONTACTO | Lic. Alarcón</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        body.contact-view {
+            background-color: #050505;
+            color: #fff;
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-minimal {
+            padding: 30px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(5, 5, 5, 0.95);
+            backdrop-filter: blur(15px);
+        }
+
+        .nav-minimal a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 12px 35px;
+            border-radius: 50px;
+            transition: 0.4s;
+            text-transform: uppercase;
+        }
+
+        .nav-minimal a:hover { background: #fff; color: #000; }
+
+        .contact-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .contact-header {
+            margin-bottom: 50px;
+        }
+
+        .contact-header span {
+            font-size: 0.7rem;
+            letter-spacing: 8px;
+            color: #666;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .contact-header h1 {
+            font-size: 3.5rem;
+            font-weight: 100;
+            margin: 0;
+            letter-spacing: -2px;
+        }
+
+        /* Estilo del Botón de Contacto */
+        .btn-contact {
+            text-decoration: none;
+            color: #fff;
+            font-size: 0.8rem;
+            letter-spacing: 5px;
+            border: 1px solid #333;
+            padding: 25px 60px;
+            border-radius: 100px;
+            transition: 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .btn-contact:hover {
+            border-color: #fff;
+            transform: scale(1.05);
+            background: #fff;
+            color: #000;
+            box-shadow: 0 0 30px rgba(255,255,255,0.1);
+        }
+
+        .contact-details {
+            margin-top: 60px;
+            display: flex;
+            gap: 40px;
+        }
+
+        .detail-item p {
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            color: #444;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .detail-item span {
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: #888;
+        }
+
+        @media (max-width: 600px) {
+            .contact-header h1 { font-size: 2.5rem; }
+            .contact-details { flex-direction: column; gap: 20px; }
+        }
+    </style>
+</head>
+<body class="contact-view">
+
+    <nav class="nav-minimal">
+        <a href="index.html">← VOLVER</a>
+        <div style="letter-spacing: 5px; font-size: 0.65rem; color: #666;">LA PAZ, BOLIVIA</div>
+    </nav>
+
+    <div class="contact-container">
+        <div class="contact-header">
+            <span>¿TIENES UN PROYECTO?</span>
+            <h1>TRABAJEMOS JUNTOS</h1>
+        </div>
+
+        <a href="https://wa.me/59177583711" target="_blank" class="btn-contact">
+            INICIAR CONVERSACIÓN
+        </a>
+
+        <div class="contact-details">
+            <div class="detail-item">
+                <p>Ubicación</p>
+                <span>La Paz, Bolivia</span>
+            </div>
+            <div class="detail-item">
+                <p>Estrategia</p>
+                <span>Soluciones Visuales</span>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
