@@ -1,128 +1,115 @@
 /* ============================================================
-   ESTILO ELITE - EFECTO DE REVELACIÓN "LA PUERTA"
+   ESTILO ELITE - EFECTO REVELACIÓN (CORREGIDO)
    ============================================================ */
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-    --bg-dark: #000000; /* Negro Absoluto para la sombra total */
-    --accent: #6366f1;
-    --text-main: #ffffff;
-    --light-source: rgba(255, 255, 255, 0.95); /* Luz intensa blanca */
+    --bg-dark: #050505; 
+    --accent: #ffffff;
+    --glow-color: rgba(255, 255, 255, 0.4);
 }
 
 body {
-    background-color: var(--bg-dark);
-    color: var(--text-main);
+    background-color: #000;
+    color: #fff;
     font-family: 'Inter', sans-serif;
-    height: 100vh;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
-/* PORTADA: CENTRADO ABSOLUTO Y ENTRADA ELEGANTE */
-.home-view {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
+/* CONTENEDOR PRINCIPAL */
 .hero-wrapper {
-    width: 100%;
-    max-width: 1200px;
-    padding: 0 5%;
     display: flex;
     align-items: center;
-    justify-content: center;
-    animation: entranceSlide 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+    gap: 40px;
+    animation: entranceSlide 1.2s ease-out forwards;
 }
 
-/* LA PUERTA (EL LOGO - `LORD.png`) */
-.brand-section {
-    display: flex;
-    align-items: center;
-    gap: 0; /* Unimos los elementos para simular el borde de la puerta */
-}
-
+/* LA PUERTA (TU LOGO) */
 .main-logo-container {
     position: relative;
-    width: 420px; /* Tamaño grande y potente */
+    width: 450px; /* Tamaño grande solicitado */
     height: auto;
-    overflow: hidden;
-    /* EFECTO DE LUZ DE CONTORNO AGRESIVO (EL BRILLO) */
+    /* EFECTO DE LUZ DE CONTORNO REALISTA */
     filter: 
-        drop-shadow(0 0 5px var(--light-source)) /* Brillo de borde */
-        drop-shadow(0 0 25px rgba(255,255,255,0.3)) /* Halo suave */
-        brightness(0.05); /* Logo casi totalmente oscuro */
-    transition: filter 1s ease;
+        drop-shadow(8px 0 15px rgba(255,255,255,0.3)) /* Luz en el borde derecho */
+        brightness(0.85); /* AHORA SÍ SE VE EL LOGO */
+    transition: 0.5s ease;
 }
 
 .main-logo {
     width: 100%;
     height: auto;
-    /* Sombra interna para simular textura de madera oscura */
-    box-shadow: inset 0 0 20px rgba(0,0,0,1);
+    display: block;
 }
 
-/* LA LUZ (EL TEXTO - "15 AÑOS... DIGITAL") */
+/* MÁSCARA DE PENUMBRA PARA EL LOGO */
+.main-logo-container::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    /* Degradado que oscurece solo el lado izquierdo */
+    background: linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 70%);
+    pointer-events: none;
+}
+
+/* LA LUZ (EL TEXTO) */
 .title-group {
-    padding-left: 20px;
-    border-left: 4px solid var(--light-source); /* Simula la columna de luz intensa */
-    /* Resplandor del texto para simular fuente de luz */
-    filter: drop-shadow(0 0 15px var(--light-source));
+    padding-left: 30px;
+    border-left: 2px solid rgba(255,255,255,0.8);
+    box-shadow: -15px 0 30px rgba(255,255,255,0.1); /* Resplandor que sale del texto hacia el logo */
 }
 
 .title-group h1 {
     font-weight: 100;
-    font-size: clamp(2rem, 6vw, 4.5rem);
-    letter-spacing: -3px;
-    line-height: 0.85;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    letter-spacing: -2px;
+    line-height: 0.9;
     text-transform: uppercase;
-    color: #fff;
-    margin-bottom: 5px;
 }
 
 .subtitle {
     font-size: 0.7rem;
-    color: #fff; /* Texto blanco puro para simular luz */
-    letter-spacing: 6px;
-    margin-bottom: 10px;
+    color: #888;
+    letter-spacing: 5px;
+    margin-bottom: 8px;
 }
 
 @keyframes entranceSlide {
-    from { opacity: 0; transform: translateX(-80px); filter: blur(15px); }
-    to { opacity: 1; transform: translateX(0); filter: blur(0); }
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
 }
 
-/* MENÚ LATERAL (MANTENEMOS TU ESTILO) */
+/* MENÚ NANCY (FLOTANTE DERECHA) */
 .side-menu {
     position: fixed;
     right: 0; top: 50%;
     transform: translateY(-50%);
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    z-index: 100;
+    gap: 10px;
 }
 
 .btn-nancy {
-    background: rgba(0,0,0,0.95);
-    border: 1px solid #1a1a1a;
-    color: #555;
-    padding: 18px 35px;
-    font-size: 0.65rem;
-    letter-spacing: 4px;
+    background: rgba(0,0,0,0.8);
+    border: 1px solid #222;
+    color: #444;
+    padding: 15px 30px;
+    font-size: 0.6rem;
+    letter-spacing: 3px;
     text-transform: uppercase;
     cursor: pointer;
-    transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    transform: translateX(75%);
+    transition: 0.4s;
+    transform: translateX(80%);
 }
 
 .btn-nancy:hover {
     transform: translateX(0);
     color: #fff;
     border-color: #fff;
-    box-shadow: -15px 0 35px rgba(255, 255, 255, 0.1);
 }
