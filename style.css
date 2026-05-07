@@ -1,160 +1,93 @@
 /* ============================================================
-   ESTILO GLOBAL - PORTAFOLIO DARK NEON RUBÉN ALARCÓN
+   ESTILO GLOBAL - PORTAFOLIO ELITE RUBÉN ALARCÓN
    ============================================================ */
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
     --bg-dark: #030303;
-    --accent-color: #6366f1; /* Electric Indigo */
-    --card-bg: #0a0a0a;
+    --accent: #6366f1;
     --text-main: #ffffff;
-    --text-dim: #666;
 }
 
 body {
     background-color: var(--bg-dark);
     color: var(--text-main);
     font-family: 'Inter', sans-serif;
-    overflow-x: hidden;
+    height: 100vh;
+    overflow: hidden; /* Evita scroll en portada */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* FONDO MODERNO ANIMADO */
+/* FONDO ANIMADO PRO */
 body::before {
     content: "";
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
     background: 
-        radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
-        radial-gradient(circle at 20% 80%, rgba(168, 85, 247, 0.1) 0%, transparent 40%);
+        radial-gradient(circle at 70% 30%, rgba(99, 102, 241, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 10% 90%, rgba(168, 85, 247, 0.08) 0%, transparent 50%);
     z-index: -1;
-    animation: pulseBackground 10s ease-in-out infinite alternate;
 }
 
-@keyframes pulseBackground {
-    0% { opacity: 0.5; }
-    100% { opacity: 1; }
-}
-
-/* Vistas con scroll */
-body.gallery-view, body.services-view {
-    display: block;
-    overflow-y: auto;
-}
-
-/* Contenedor con borde neón sutil */
-.container {
+/* CENTRADO DE PORTADA */
+.hero-wrapper {
+    width: 100%;
     max-width: 1200px;
-    margin: 80px auto;
-    padding: 40px;
-    border-left: 2px solid var(--accent-color);
-    position: relative;
+    padding: 0 10%;
 }
 
-/* EFECTO DE ENTRADA */
-.fade-in-left {
-    animation: proEntrance 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+.brand-section {
+    display: flex;
+    align-items: center;
+    gap: 50px;
 }
 
-@keyframes proEntrance {
-    from { opacity: 0; transform: translateX(-100px); filter: blur(20px); }
-    to { opacity: 1; transform: translateX(0); filter: blur(0); }
+.main-logo {
+    width: 280px; /* Ajuste para tu logo Arte Gráfico */
+    height: auto;
+    filter: drop-shadow(0 0 20px rgba(255,255,255,0.1));
 }
 
-/* Títulos con degradado moderno */
-h1 {
+.title-group h1 {
     font-weight: 100;
-    font-size: clamp(3rem, 10vw, 6rem);
-    letter-spacing: -5px;
-    line-height: 0.8;
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    letter-spacing: -3px;
+    line-height: 0.85;
     text-transform: uppercase;
-    background: linear-gradient(135deg, #fff 30%, var(--accent-color) 100%);
+    background: linear-gradient(to bottom, #fff, #666);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 30px;
 }
 
 .subtitle {
-    font-weight: 400;
-    font-size: 0.75rem;
-    color: var(--accent-color);
-    letter-spacing: 7px;
-    text-transform: uppercase;
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 6px;
     margin-bottom: 10px;
 }
 
-/* TARJETAS DE SERVICIOS - ESTILO "GLASSMORPISM" */
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
-    margin-top: 60px;
-}
-
-.service-card {
-    background: linear-gradient(145deg, #0f0f0f, #050505);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 60px 40px;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.service-card:hover {
-    border-color: var(--accent-color);
-    transform: translateY(-20px) scale(1.02);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 20px rgba(99, 102, 241, 0.2);
-}
-
-.service-number {
-    font-size: 6rem;
-    font-weight: 900;
-    color: rgba(99, 102, 241, 0.05);
-    position: absolute;
-    bottom: -20px;
-    right: 10px;
-}
-
-.service-card h3 {
-    font-weight: 300;
-    font-size: 1.4rem;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
-    color: #fff;
-}
-
-.service-card p {
-    color: #888;
+.tagline {
     font-size: 0.9rem;
-    line-height: 1.8;
+    color: #444;
+    letter-spacing: 2px;
+    margin-top: 20px;
 }
 
-/* NAVEGACIÓN */
-.nav-minimal { 
-    padding: 40px; 
-    display: flex; 
-    justify-content: space-between; 
-    font-size: 0.7rem; 
-    letter-spacing: 5px;
-    font-weight: 300;
+/* ANIMACIÓN DE ENTRADA DESDE LA IZQUIERDA */
+.fade-in-left {
+    animation: entranceSlide 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
 }
 
-.nav-minimal a { 
-    color: var(--text-dim); 
-    text-decoration: none; 
-    padding: 5px 15px;
-    border: 1px solid #222;
-    transition: 0.4s;
+@keyframes entranceSlide {
+    from { opacity: 0; transform: translateX(-100px); filter: blur(15px); }
+    to { opacity: 1; transform: translateX(0); filter: blur(0); }
 }
 
-.nav-minimal a:hover { 
-    color: #fff; 
-    border-color: var(--accent-color); 
-    background: rgba(99, 102, 241, 0.1);
-}
-
-/* BOTONES MENÚ LATERAL */
+/* MENÚ LATERAL MEJORADO */
 .side-menu {
     position: fixed;
     right: 0; top: 50%;
@@ -162,32 +95,25 @@ h1 {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    z-index: 500;
+    z-index: 100;
 }
 
 .btn-nancy {
-    background: rgba(0,0,0,0.8);
-    border: 1px solid #333;
-    color: #888;
-    padding: 15px 30px;
-    font-size: 0.65rem;
-    letter-spacing: 4px;
+    background: rgba(10,10,10,0.8);
+    border: 1px solid #222;
+    color: #555;
+    padding: 18px 40px;
+    font-size: 0.6rem;
+    letter-spacing: 5px;
     text-transform: uppercase;
     cursor: pointer;
-    transition: 0.5s;
-    transform: translateX(70%);
+    transition: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateX(75%);
 }
 
 .btn-nancy:hover {
     transform: translateX(0);
     color: #fff;
-    border-color: var(--accent-color);
-    box-shadow: -10px 0 30px rgba(99, 102, 241, 0.3);
+    border-color: var(--accent);
+    box-shadow: -15px 0 35px rgba(99, 102, 241, 0.2);
 }
-
-/* GALERÍA PROYECTOS */
-.visual-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; padding: 40px; }
-.grid-item { aspect-ratio: 1/1; overflow: hidden; border: 1px solid #1a1a1a; cursor: pointer; transition: 0.5s; }
-.grid-item:hover { border-color: var(--accent-color); box-shadow: 0 0 30px rgba(99, 102, 241, 0.4); }
-.grid-item img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: 0.8s; }
-.grid-item:hover img { filter: grayscale(0%); transform: scale(1.1); }
