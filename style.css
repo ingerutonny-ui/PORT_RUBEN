@@ -1,5 +1,5 @@
 /* ============================================================
-   PORTAFOLIO ELITE: RESTAURACIÓN Y COREOGRAFÍA DE MAGIA
+   PORTAFOLIO ELITE: ESCALA FINAL +25% (MAGIA PURA)
    ============================================================ */
 
 * { 
@@ -15,7 +15,7 @@
 body {
     background-color: var(--bg-dark);
     color: #fff;
-    /* Fuente Inter delgada para mantener la elegancia original */
+    /* Fuente Inter delgada restaurada */
     font-family: 'Inter', sans-serif;
     min-height: 100vh;
     display: flex;
@@ -43,18 +43,18 @@ body::before {
     100% { opacity: 1; transform: scale(1.1); }
 }
 
-/* CONTENEDOR DE LA PORTADA */
+/* CONTENEDOR PRINCIPAL */
 .hero-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-/* 1. EL LOGO (ACHICADO PARA ELEGANCIA) */
+/* 1. EL LOGO (+25% TAMAÑO) */
 .main-logo-container {
     position: relative;
-    width: 380px; /* Reducido para que no sea invasivo */
-    filter: drop-shadow(15px 0 20px rgba(255,255,255,0.2)) brightness(0.85);
+    width: 475px; /* De 380px -> 475px (+25%) */
+    filter: drop-shadow(15px 0 25px rgba(255,255,255,0.2)) brightness(0.9);
     opacity: 0;
     animation: fadeInStatic 1.5s ease-out forwards;
 }
@@ -67,45 +67,43 @@ body::before {
     -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0.3) 0%, rgba(0,0,0,1) 80%);
 }
 
-/* 2. LA LÍNEA CENTRAL Y CONTENEDOR DE TEXTO */
+/* 2. LA LÍNEA CENTRAL (+25% ESPACIADO) */
 .title-group {
-    padding-left: 40px;
-    border-left: 2px solid rgba(255,255,255,0.8);
-    /* EL SECRETO: Esconde todo lo que esté a la izquierda de la línea */
+    padding-left: 50px; /* De 40px -> 50px (+25%) */
+    border-left: 3px solid rgba(255,255,255,0.85); /* Línea un poco más sólida */
     overflow: hidden; 
     opacity: 0;
     animation: fadeInStatic 1.5s ease-out forwards;
 }
 
-/* 3. LAS LETRAS (NACEN DESDE LA LÍNEA HACIA LA DERECHA) */
+/* 3. LAS LETRAS (NACEN DESDE LA LÍNEA) */
 .text-reveal {
     opacity: 0;
-    /* Empieza totalmente fuera de la vista (detrás de la línea) */
     transform: translateX(-105%); 
     animation: slideFromLine 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    animation-delay: 1.4s; /* Espera a que la línea esté firme */
+    animation-delay: 1.4s;
 }
 
 .title-group h1 {
-    font-weight: 100; /* Extra light como el original */
-    font-size: 4.5rem;
-    letter-spacing: -1px;
+    font-weight: 100;
+    font-size: 5.6rem; /* De 4.5rem -> 5.6rem (+25%) */
+    letter-spacing: -2px;
     line-height: 0.85;
     text-transform: uppercase;
-    margin: 10px 0;
+    margin: 12px 0;
 }
 
 .subtitle {
-    font-size: 0.7rem;
+    font-size: 0.875rem; /* De 0.7rem -> 0.875rem (+25%) */
     color: #888;
-    letter-spacing: 5px;
+    letter-spacing: 6px; /* Más aire entre letras */
     text-transform: uppercase;
 }
 
 .tagline {
-    font-size: 0.8rem;
+    font-size: 1rem; /* De 0.8rem -> 1rem (+25%) */
     color: rgba(255,255,255,0.6);
-    letter-spacing: 2px;
+    letter-spacing: 3px;
 }
 
 /* ANIMACIONES */
@@ -120,26 +118,26 @@ body::before {
     100% { opacity: 1; transform: translateX(0); }
 }
 
-/* MENÚ NANCY (DERECHA) */
+/* MENÚ NANCY (DERECHA) (+25% IMPACTO) */
 .side-menu {
     position: fixed;
     right: 0; top: 50%;
     transform: translateY(-50%);
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
 }
 
 .btn-nancy {
-    background: rgba(0,0,0,0.8);
+    background: rgba(0,0,0,0.85);
     border: 1px solid #1a1a1a;
     color: #555;
-    padding: 18px 30px;
-    font-size: 0.6rem;
-    letter-spacing: 4px;
+    padding: 22px 38px; /* +25% en el padding */
+    font-size: 0.75rem; /* +25% tamaño fuente */
+    letter-spacing: 5px;
     text-transform: uppercase;
     cursor: pointer;
-    transition: 0.4s;
+    transition: 0.4s ease-in-out;
     transform: translateX(70%);
 }
 
@@ -147,4 +145,5 @@ body::before {
     transform: translateX(0);
     color: #fff;
     border-color: #fff;
+    box-shadow: -10px 0 30px rgba(255,255,255,0.05);
 }
