@@ -41,34 +41,14 @@
             text-transform: uppercase;
         }
 
-        .nav-minimal a:hover {
-            background: #fff;
-            color: #000;
-        }
+        .nav-minimal a:hover { background: #fff; color: #000; }
 
-        .nav-info {
-            text-align: right;
-        }
+        .nav-info { text-align: right; }
+        .nav-info span { display: block; letter-spacing: 5px; font-size: 0.65rem; color: #666; text-transform: uppercase; }
 
-        .nav-info span {
-            display: block;
-            letter-spacing: 5px;
-            font-size: 0.65rem;
-            color: #666;
-            text-transform: uppercase;
-        }
-
-        /* Contenedor Masonry Optimizado */
-        .masonry-wrapper {
-            padding: 40px;
-            max-width: 1800px;
-            margin: 0 auto;
-        }
-
-        .masonry-container {
-            column-count: 4; /* 4 columnas en pantallas grandes */
-            column-gap: 20px;
-        }
+        /* Contenedor Masonry */
+        .masonry-wrapper { padding: 40px; max-width: 1800px; margin: 0 auto; }
+        .masonry-container { column-count: 4; column-gap: 20px; }
 
         .masonry-item {
             display: inline-block;
@@ -80,17 +60,15 @@
             background: #111;
             transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
             border: 1px solid rgba(255, 255, 255, 0.03);
+            cursor: pointer; /* Indicar clic */
         }
 
         .masonry-item img {
-            width: 100%;
-            height: auto;
-            display: block;
+            width: 100%; height: auto; display: block;
             filter: grayscale(100%) brightness(0.7);
             transition: all 0.6s ease;
         }
 
-        /* Interacción */
         .masonry-item:hover {
             transform: translateY(-10px) scale(1.02);
             z-index: 10;
@@ -98,54 +76,72 @@
             border-color: rgba(255, 255, 255, 0.1);
         }
 
-        .masonry-item:hover img {
-            filter: grayscale(0%) brightness(1);
-        }
+        .masonry-item:hover img { filter: grayscale(0%) brightness(1); }
 
         .item-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 25px;
+            position: absolute; bottom: 0; left: 0; right: 0; padding: 25px;
             background: linear-gradient(transparent, rgba(0, 0, 0, 0.95));
-            opacity: 0;
-            transition: 0.4s;
+            opacity: 0; transition: 0.4s;
         }
 
-        .masonry-item:hover .item-overlay {
-            opacity: 1;
-        }
-
-        .item-overlay p {
-            margin: 0;
-            font-size: 0.65rem;
-            letter-spacing: 3px;
-            font-weight: 300;
-            text-transform: uppercase;
-        }
+        .masonry-item:hover .item-overlay { opacity: 1; }
+        .item-overlay p { margin: 0; font-size: 0.65rem; letter-spacing: 3px; font-weight: 300; text-transform: uppercase; }
 
         /* Footer */
-        .gallery-footer {
-            text-align: center;
-            padding: 80px 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            margin-top: 50px;
-        }
-
-        .gallery-footer p {
-            color: #333;
-            font-size: 0.75rem;
-            letter-spacing: 10px;
-            text-transform: uppercase;
-        }
+        .gallery-footer { text-align: center; padding: 80px 20px; border-top: 1px solid rgba(255, 255, 255, 0.05); margin-top: 50px; }
+        .gallery-footer p { color: #333; font-size: 0.75rem; letter-spacing: 10px; text-transform: uppercase; }
 
         /* Responsivo */
         @media (max-width: 1400px) { .masonry-container { column-count: 3; } }
         @media (max-width: 900px) { .masonry-container { column-count: 2; } }
-        @media (max-width: 600px) { 
-            .masonry-container { column-count: 1; }
-            .nav-minimal { padding: 20px; }
+        @media (max-width: 600px) { .masonry-container { column-count: 1; } .nav-minimal { padding: 20px; } }
+
+        /* ============================================================
+           CSS PARA LA FUNCIÓN LIGHTBOX (PANTALLA COMPLETA)
+           ============================================================ */
+        #lightbox {
+            position: fixed;
+            z-index: 9999; /* Por encima de todo */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: none; /* Escondido por defecto */
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            cursor: zoom-out; /* Indicar clic para cerrar */
+        }
+
+        #lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        #lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            box-shadow: 0 0 50px rgba(99, 102, 241, 0.2);
+            transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            transform: scale(0.9);
+        }
+
+        #lightbox.active img {
+            transform: scale(1);
+        }
+
+        /* Botón cerrar (Opcional, el clic en el fondo ya cierra) */
+        .close-lightbox {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            font-size: 2rem;
+            color: #fff;
+            cursor: pointer;
+            font-weight: 100;
         }
     </style>
 </head>
@@ -168,10 +164,10 @@
             <div class="masonry-item"><img src="img/005.png" alt="Diseño"><div class="item-overlay"><p>Arte Gráfico 05</p></div></div>
             <div class="masonry-item"><img src="img/006.png" alt="Diseño"><div class="item-overlay"><p>Arte Gráfico 06</p></div></div>
             <div class="masonry-item"><img src="img/007.png" alt="Diseño"><div class="item-overlay"><p>Arte Gráfico 07</p></div></div>
-            <div class="masonry-item"><img src="img/008.png" alt="Diseño"><div class="item-overlay"><p>Arte Gráfico 08</p></div></div>
-            <div class="masonry-item"><img src="img/009.png" alt="Diseño"><div class="item-overlay"><p>Arte Gráfico 09</p></div></div>
-            <div class="masonry-item"><img src="img/010.png" alt="Diseño"><div class="item-overlay"><p>Arte Gráfico 10</p></div></div>
-            <div class="masonry-item"><img src="img/011.png" alt="Diseño"><div class="item-overlay"><p>Arte Gráfico 11</p></div></div>
+            <div class="masonry-item"><img src="img/008.jpg" alt="Diseño"><div class="item-overlay"><p>Arte Gráfico 08</p></div></div>
+            <div class="masonry-item"><img src="img/009.jpg" alt="Diseño"><div class="item-overlay"><p>Arte Gráfico 09</p></div></div>
+            <div class="masonry-item"><img src="img/010.jpg" alt="Diseño"><div class="item-overlay"><p>Arte Gráfico 10</p></div></div>
+            <div class="masonry-item"><img src="img/011.jpg" alt="Diseño"><div class="item-overlay"><p>Arte Gráfico 11</p></div></div>
             <div class="masonry-item"><img src="img/012.png" alt="Diseño"><div class="item-overlay"><p>Arte Gráfico 12</p></div></div>
             <div class="masonry-item"><img src="img/013.png" alt="Diseño"><div class="item-overlay"><p>Arte Gráfico 13</p></div></div>
             <div class="masonry-item"><img src="img/014.png" alt="Diseño"><div class="item-overlay"><p>Arte Gráfico 14</p></div></div>
@@ -185,9 +181,40 @@
         </div>
     </div>
 
+    <div id="lightbox">
+        <span class="close-lightbox">×</span>
+        <img src="" alt="Vista Completa">
+    </div>
+
     <footer class="gallery-footer">
         <p>EXPLORA LA TRAYECTORIA COMPLETA DEL LIC. ALARCÓN</p>
     </footer>
+
+    <script>
+        // 1. Obtenemos los elementos
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = lightbox.querySelector('img');
+        const closeBtn = lightbox.querySelector('.close-lightbox');
+        const masonryItems = document.querySelectorAll('.masonry-item');
+
+        // 2. Función para abrir
+        masonryItems.forEach(item => {
+            item.addEventListener('click', e => {
+                const img = item.querySelector('img');
+                lightboxImg.src = img.src; // Pasa la URL de la imagen chica a la grande
+                lightbox.classList.add('active'); // Activa el overlay
+                document.body.style.overflow = 'hidden'; // Bloquea el scroll del fondo
+            });
+        });
+
+        // 3. Función para cerrar (clic en el fondo o botón x)
+        lightbox.addEventListener('click', e => {
+            if (e.target !== lightboxImg) { // Si haces clic en el fondo, no en la imagen
+                lightbox.classList.remove('active');
+                document.body.style.overflow = ''; // Recupera el scroll
+            }
+        });
+    </script>
 
 </body>
 </html>
