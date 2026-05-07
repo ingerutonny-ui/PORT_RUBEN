@@ -8,23 +8,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400&display=swap" rel="stylesheet">
     
     <style>
-        /* ESTILOS EXCLUSIVOS PARA ESTA PÁGINA PARA NO TOCAR EL STYLE.CSS */
+        /* ============================================================
+           RECUPEERACIÓN DE DISEÑO DE CUADROS ELEGANTES (GRID)
+           ============================================================ */
+        
+        /* Contenedor principal centrado con animación suave */
         .services-main {
-            max-width: 900px;
+            max-width: 1200px; /* Más ancho para los 3 cuadros */
             width: 90%;
             margin: 0 auto;
-            padding: 80px 20px;
+            padding: 100px 0;
             display: flex;
             flex-direction: column;
-            gap: 60px;
-            /* Aseguramos que el contenido aparezca suave */
+            gap: 80px; /* Espacio entre cabecera y grid */
             opacity: 0;
             animation: fadeInServices 1.5s forwards;
         }
 
+        /* Cabecera elegante con línea vertical */
         .services-header {
             border-left: 4px solid #fff;
             padding-left: 30px;
+            align-self: flex-start;
         }
 
         .services-header p {
@@ -42,44 +47,60 @@
             margin-top: 10px;
         }
 
+        /* CUADRÍCULA DE TRES CUADROS (GRID) */
         .services-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 45px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 columnas iguales */
+            gap: 30px; /* Espacio entre cuadros */
         }
 
+        /* ESTILO DE CADA CUADRO ELEGANTE */
         .service-card {
+            background: rgba(255, 255, 255, 0.03); /* Fondo muy sutil */
+            border: 1px solid rgba(255, 255, 255, 0.05); /* Borde casi invisible */
+            padding: 50px 35px;
             position: relative;
-            padding-left: 60px;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            overflow: hidden;
         }
 
+        /* Efecto hover elegante con luz morada sutil */
+        .service-card:hover {
+            border-color: rgba(99, 102, 241, 0.4);
+            background: rgba(99, 102, 241, 0.05);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        /* Número en la esquina superior derecha */
         .service-card span {
             position: absolute;
-            left: 0; 
-            top: 0;
-            font-size: 1.4rem;
+            right: 30px; 
+            top: 30px;
+            font-size: 1.2rem;
             font-weight: 300;
-            color: rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.15);
         }
 
         .service-card h3 {
             font-weight: 300;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             letter-spacing: 2px;
-            margin-bottom: 12px;
+            margin-bottom: 20px;
             text-transform: uppercase;
+            color: #fff;
         }
 
         .service-card p {
-            color: #888;
+            color: #aaa;
             line-height: 1.7;
-            font-size: 1rem;
-            max-width: 700px;
+            font-size: 0.95rem;
         }
 
         /* BOTÓN VOLVER - ESTILO SEMICIRCULAR CAJERO */
         .btn-volver-container {
             margin-top: 20px;
+            align-self: center; /* Centrado abajo */
         }
 
         .btn-volver {
@@ -87,7 +108,7 @@
             background: rgba(15, 15, 15, 0.9);
             border: 1px solid #333;
             color: #fff;
-            padding: 18px 45px;
+            padding: 18px 50px;
             font-size: 0.75rem;
             letter-spacing: 4px;
             border-radius: 50px; /* Semicircular total */
@@ -99,17 +120,24 @@
         .btn-volver:hover {
             background: #fff;
             color: #000;
-            transform: translateY(-3px);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 20px rgba(255,255,255,0.1);
         }
 
         @keyframes fadeInServices {
             to { opacity: 1; }
         }
 
-        /* AJUSTE MÓVIL RÁPIDO */
+        /* RESPONSIVO PARA TABLETS Y MÓVILES */
+        @media (max-width: 1024px) {
+            .services-grid { grid-template-columns: repeat(2, 1fr); } /* 2 columnas */
+            .services-header h2 { font-size: 3rem; }
+        }
+
         @media (max-width: 768px) {
+            .services-grid { grid-template-columns: 1fr; } /* 1 columna */
             .services-header h2 { font-size: 2.5rem; }
-            .service-card h3 { font-size: 1.4rem; }
+            .service-card { padding: 40px 25px; }
         }
     </style>
 </head>
@@ -125,19 +153,19 @@
             <div class="service-card">
                 <span>01</span>
                 <h3>IDENTIDAD CORPORATIVA</h3>
-                <p>Diseño de logotipos y manuales de marca que trascienden lo visual para construir autoridad real en el mercado.</p>
+                <p>Diseño de logotipos y manuales de marca que trascienden lo visual para construir autoridad real y perdurable en el mercado.</p>
             </div>
 
             <div class="service-card">
                 <span>02</span>
                 <h3>DISEÑO EDITORIAL</h3>
-                <p>Maquetación profesional para revistas, libros y catálogos digitales con acabados de alta gama y legibilidad perfecta.</p>
+                <p>Maquetación profesional para revistas, libros y catálogos digitales con acabados de alta gama y una legibilidad perfecta.</p>
             </div>
 
             <div class="service-card">
                 <span>03</span>
                 <h3>PUBLICIDAD DIGITAL</h3>
-                <p>Creación de contenido visual de alto impacto para redes sociales, enfocado en captar la atención en segundos.</p>
+                <p>Creación de contenido visual de alto impacto para redes sociales, enfocado en captar la atención en segundos y generar conversión.</p>
             </div>
         </div>
 
