@@ -6,6 +6,114 @@
     <title>PROYECTOS | Lic. Alarcón</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* ============================================================
+           DISEÑO DE GALERÍA INFINITA - ARTE GRÁFICO
+           ============================================================ */
+        body.gallery-view {
+            background-color: #020202;
+            overflow: hidden; /* Evita scroll vertical para el efecto slider */
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Navegación Minimalista */
+        .nav-minimal {
+            padding: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-minimal a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 50px;
+            transition: 0.4s;
+        }
+
+        .nav-minimal a:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        .nav-minimal span {
+            color: rgba(255,255,255,0.4);
+            font-size: 0.7rem;
+            letter-spacing: 5px;
+        }
+
+        /* Contenedor del Slider */
+        .slider-container {
+            width: 100%;
+            height: 60vh;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .slider-track {
+            display: flex;
+            width: calc(350px * 10); /* Ajuste según número de imágenes */
+            animation: scroll-infinite 30s linear infinite;
+        }
+
+        .slide {
+            width: 350px;
+            height: 500px;
+            padding: 0 15px;
+            flex-shrink: 0;
+            transition: transform 0.5s ease;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 4px;
+            filter: grayscale(100%) brightness(0.6);
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .slide:hover img {
+            filter: grayscale(0%) brightness(1);
+            transform: scale(1.05);
+            border-color: rgba(255,255,255,0.3);
+        }
+
+        /* Animación de Desplazamiento Infinito */
+        @keyframes scroll-infinite {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-350px * 5)); }
+        }
+
+        /* Footer de Galería */
+        .gallery-footer {
+            padding: 60px;
+            text-align: center;
+        }
+
+        .gallery-footer p {
+            color: #444;
+            font-size: 0.75rem;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+        }
+
+        /* Pausa al pasar el mouse */
+        .slider-container:hover .slider-track {
+            animation-play-state: paused;
+        }
+    </style>
 </head>
 <body class="gallery-view">
 
@@ -21,11 +129,11 @@
             <div class="slide"><img src="img/003.png" alt="Diseño"></div>
             <div class="slide"><img src="img/004.jpg" alt="Diseño"></div>
             <div class="slide"><img src="img/005.png" alt="Diseño"></div>
-            <div class="slide"><img src="img/001.png" alt="Diseño"></div>
-            <div class="slide"><img src="img/002.png" alt="Diseño"></div>
-            <div class="slide"><img src="img/003.png" alt="Diseño"></div>
-            <div class="slide"><img src="img/004.jpg" alt="Diseño"></div>
-            <div class="slide"><img src="img/005.png" alt="Diseño"></div>
+            <div class="slide"><img src="img/006.png" alt="Diseño"></div>
+            <div class="slide"><img src="img/007.png" alt="Diseño"></div>
+            <div class="slide"><img src="img/008.png" alt="Diseño"></div>
+            <div class="slide"><img src="img/009.jpg" alt="Diseño"></div>
+            <div class="slide"><img src="img/010.png" alt="Diseño"></div>
         </div>
     </div>
 
