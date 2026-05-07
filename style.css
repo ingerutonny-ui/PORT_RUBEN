@@ -1,5 +1,5 @@
 /* ============================================================
-   PORTAFOLIO ELITE: ESCALA FINAL +25% (MAGIA PURA)
+   PORTAFOLIO ELITE: ESCALA +25% Y DISEÑO RESPONSIVO
    ============================================================ */
 
 * { 
@@ -15,17 +15,16 @@
 body {
     background-color: var(--bg-dark);
     color: #fff;
-    /* Fuente Inter delgada restaurada */
     font-family: 'Inter', sans-serif;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    overflow-x: hidden; /* Evita scroll horizontal en móviles */
     position: relative;
 }
 
-/* FONDO EN MOVIMIENTO ORIGINAL */
+/* FONDO EN MOVIMIENTO */
 body::before {
     content: "";
     position: fixed;
@@ -48,12 +47,14 @@ body::before {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    padding: 20px;
 }
 
-/* 1. EL LOGO (+25% TAMAÑO) */
+/* 1. EL LOGO */
 .main-logo-container {
     position: relative;
-    width: 475px; /* De 380px -> 475px (+25%) */
+    width: 475px; 
     filter: drop-shadow(15px 0 25px rgba(255,255,255,0.2)) brightness(0.9);
     opacity: 0;
     animation: fadeInStatic 1.5s ease-out forwards;
@@ -67,16 +68,16 @@ body::before {
     -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0.3) 0%, rgba(0,0,0,1) 80%);
 }
 
-/* 2. LA LÍNEA CENTRAL (+25% ESPACIADO) */
+/* 2. LA LÍNEA CENTRAL */
 .title-group {
-    padding-left: 50px; /* De 40px -> 50px (+25%) */
-    border-left: 3px solid rgba(255,255,255,0.85); /* Línea un poco más sólida */
+    padding-left: 50px; 
+    border-left: 3px solid rgba(255,255,255,0.85);
     overflow: hidden; 
     opacity: 0;
     animation: fadeInStatic 1.5s ease-out forwards;
 }
 
-/* 3. LAS LETRAS (NACEN DESDE LA LÍNEA) */
+/* 3. LAS LETRAS */
 .text-reveal {
     opacity: 0;
     transform: translateX(-105%); 
@@ -86,7 +87,7 @@ body::before {
 
 .title-group h1 {
     font-weight: 100;
-    font-size: 5.6rem; /* De 4.5rem -> 5.6rem (+25%) */
+    font-size: 5.6rem; 
     letter-spacing: -2px;
     line-height: 0.85;
     text-transform: uppercase;
@@ -94,14 +95,14 @@ body::before {
 }
 
 .subtitle {
-    font-size: 0.875rem; /* De 0.7rem -> 0.875rem (+25%) */
+    font-size: 0.875rem; 
     color: #888;
-    letter-spacing: 6px; /* Más aire entre letras */
+    letter-spacing: 6px;
     text-transform: uppercase;
 }
 
 .tagline {
-    font-size: 1rem; /* De 0.8rem -> 1rem (+25%) */
+    font-size: 1rem; 
     color: rgba(255,255,255,0.6);
     letter-spacing: 3px;
 }
@@ -118,7 +119,7 @@ body::before {
     100% { opacity: 1; transform: translateX(0); }
 }
 
-/* MENÚ NANCY (DERECHA) (+25% IMPACTO) */
+/* MENÚ NANCY */
 .side-menu {
     position: fixed;
     right: 0; top: 50%;
@@ -126,14 +127,15 @@ body::before {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    z-index: 100;
 }
 
 .btn-nancy {
     background: rgba(0,0,0,0.85);
     border: 1px solid #1a1a1a;
     color: #555;
-    padding: 22px 38px; /* +25% en el padding */
-    font-size: 0.75rem; /* +25% tamaño fuente */
+    padding: 22px 38px; 
+    font-size: 0.75rem; 
     letter-spacing: 5px;
     text-transform: uppercase;
     cursor: pointer;
@@ -145,5 +147,68 @@ body::before {
     transform: translateX(0);
     color: #fff;
     border-color: #fff;
-    box-shadow: -10px 0 30px rgba(255,255,255,0.05);
+}
+
+/* ============================================================
+   AJUSTES RESPONSIVOS (MÓVILES Y TABLETS)
+   ============================================================ */
+
+@media (max-width: 1024px) {
+    .hero-wrapper {
+        flex-direction: column; /* Apilado vertical */
+        text-align: center;
+    }
+
+    .main-logo-container {
+        width: 300px; /* Logo más pequeño en tablet */
+        margin-bottom: 30px;
+        filter: none; /* Quitamos sombras pesadas */
+    }
+
+    .title-group {
+        padding-left: 0;
+        border-left: none;
+        border-top: 2px solid rgba(255,255,255,0.5); /* Línea horizontal ahora */
+        padding-top: 20px;
+    }
+
+    .text-reveal {
+        transform: translateY(-105%); /* Animación ahora viene de arriba */
+        animation: slideFromTop 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .title-group h1 {
+        font-size: 3.5rem; /* Fuente más pequeña para que quepa */
+    }
+
+    .side-menu {
+        bottom: 0; top: auto;
+        right: auto;
+        width: 100%;
+        flex-direction: row; /* Menú horizontal abajo */
+        transform: none;
+        justify-content: center;
+        background: rgba(0,0,0,0.9);
+    }
+
+    .btn-nancy {
+        transform: none;
+        padding: 15px 10px;
+        font-size: 0.5rem;
+        border: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .title-group h1 {
+        font-size: 2.5rem;
+    }
+    .main-logo-container {
+        width: 200px;
+    }
+}
+
+@keyframes slideFromTop {
+    0% { opacity: 0; transform: translateY(-100%); }
+    100% { opacity: 1; transform: translateY(0); }
 }
