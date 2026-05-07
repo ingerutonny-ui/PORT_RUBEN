@@ -9,18 +9,18 @@
     
     <style>
         /* ============================================================
-           RECUPEERACIÓN DE DISEÑO DE CUADROS ELEGANTES (GRID)
+           RECUPERACIÓN DE DISEÑO DE CUADROS ELEGANTES (GRID) - REVISADO
            ============================================================ */
         
         /* Contenedor principal centrado con animación suave */
         .services-main {
-            max-width: 1200px; /* Más ancho para los 3 cuadros */
+            max-width: 1200px;
             width: 90%;
             margin: 0 auto;
             padding: 100px 0;
             display: flex;
             flex-direction: column;
-            gap: 80px; /* Espacio entre cabecera y grid */
+            gap: 80px;
             opacity: 0;
             animation: fadeInServices 1.5s forwards;
         }
@@ -50,18 +50,19 @@
         /* CUADRÍCULA DE TRES CUADROS (GRID) */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 3 columnas iguales */
-            gap: 30px; /* Espacio entre cuadros */
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
         }
 
         /* ESTILO DE CADA CUADRO ELEGANTE */
         .service-card {
-            background: rgba(255, 255, 255, 0.03); /* Fondo muy sutil */
-            border: 1px solid rgba(255, 255, 255, 0.05); /* Borde casi invisible */
-            padding: 50px 35px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 50px 35px 80px 35px; /* Más padding abajo para el número */
             position: relative;
             transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
             overflow: hidden;
+            border-radius: 4px;
         }
 
         /* Efecto hover elegante con luz morada sutil */
@@ -72,14 +73,36 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
 
-        /* Número en la esquina superior derecha */
-        .service-card span {
+        /* ============================================================
+           AJUSTE CRÍTICO DE LOS NÚMEROS (DEGRADADO Y UBICACIÓN)
+           ============================================================ */
+        
+        /* Número en la esquina INFERIOR derecha */
+        .service-card .card-number {
             position: absolute;
-            right: 30px; 
-            top: 30px;
-            font-size: 1.2rem;
+            right: 15px; 
+            bottom: -20px; /* Ligeramente fuera para efecto marca de agua */
+            font-size: 9rem; /* MUCHO MÁS GRANDE */
             font-weight: 300;
-            color: rgba(255,255,255,0.15);
+            line-height: 1;
+            font-family: 'Inter', sans-serif;
+            
+            /* CORTAMOS EL TEXTO PARA MOSTRAR EL DEGRADADO */
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.6) 0%, rgba(99, 102, 241, 0.6) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            
+            /* CASI INVISIBLE */
+            opacity: 0.1; 
+            
+            pointer-events: none; /* No interfiere con el hover */
+            transition: opacity 0.5s ease;
+        }
+
+        /* EFECTO HOVER: Aumentamos sutilmente la visibilidad del número al hover */
+        .service-card:hover .card-number {
+            opacity: 0.18;
         }
 
         .service-card h3 {
@@ -100,7 +123,7 @@
         /* BOTÓN VOLVER - ESTILO SEMICIRCULAR CAJERO */
         .btn-volver-container {
             margin-top: 20px;
-            align-self: center; /* Centrado abajo */
+            align-self: center;
         }
 
         .btn-volver {
@@ -111,7 +134,7 @@
             padding: 18px 50px;
             font-size: 0.75rem;
             letter-spacing: 4px;
-            border-radius: 50px; /* Semicircular total */
+            border-radius: 50px;
             text-decoration: none;
             transition: 0.4s;
             text-transform: uppercase;
@@ -128,16 +151,18 @@
             to { opacity: 1; }
         }
 
-        /* RESPONSIVO PARA TABLETS Y MÓVILES */
+        /* RESPONSIVO */
         @media (max-width: 1024px) {
-            .services-grid { grid-template-columns: repeat(2, 1fr); } /* 2 columnas */
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
             .services-header h2 { font-size: 3rem; }
+            .service-card .card-number { font-size: 7rem; }
         }
 
         @media (max-width: 768px) {
-            .services-grid { grid-template-columns: 1fr; } /* 1 columna */
+            .services-grid { grid-template-columns: 1fr; }
             .services-header h2 { font-size: 2.5rem; }
-            .service-card { padding: 40px 25px; }
+            .service-card { padding: 40px 25px 60px 25px; }
+            .service-card .card-number { font-size: 5rem; }
         }
     </style>
 </head>
@@ -151,19 +176,19 @@
 
         <div class="services-grid">
             <div class="service-card">
-                <span>01</span>
+                <span class="card-number">01</span>
                 <h3>IDENTIDAD CORPORATIVA</h3>
                 <p>Diseño de logotipos y manuales de marca que trascienden lo visual para construir autoridad real y perdurable en el mercado.</p>
             </div>
 
             <div class="service-card">
-                <span>02</span>
+                <span class="card-number">02</span>
                 <h3>DISEÑO EDITORIAL</h3>
                 <p>Maquetación profesional para revistas, libros y catálogos digitales con acabados de alta gama y una legibilidad perfecta.</p>
             </div>
 
             <div class="service-card">
-                <span>03</span>
+                <span class="card-number">03</span>
                 <h3>PUBLICIDAD DIGITAL</h3>
                 <p>Creación de contenido visual de alto impacto para redes sociales, enfocado en captar la atención en segundos y generar conversión.</p>
             </div>
