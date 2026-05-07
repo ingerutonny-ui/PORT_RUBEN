@@ -9,20 +9,97 @@
     
     <style>
         /* ============================================================
-           DISEÑO DE GALERÍA INFINITA - ARTE GRÁFICO
+           DISEÑO DE GALERÍA DE PROYECTOS DINÁMICA (EFECTO LIGHTBOX)
            ============================================================ */
         body.gallery-view {
             background-color: #020202;
-            overflow: hidden; /* Evita scroll vertical para el efecto slider */
             height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            overflow: hidden;
+        }
+
+        /* 1. Visor Principal (Donde aparece la imagen grande) */
+        .viewer-container {
+            width: 100%;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(10,10,10,0.9) 100%);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+        }
+
+        .active-img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            box-shadow: 0 0 50px rgba(255,255,255,0.05);
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            filter: brightness(0.9); /* Sutil para no quemar la vista */
+        }
+
+        /* Leyenda de la Imagen Principal (Visor) */
+        .viewer-caption {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            color: #fff;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* 2. Mesa de Luz / Miniaturas (Donde haces clic) */
+        .thumbnails-container {
+            width: 100%;
+            padding: 20px;
+            background: rgba(10,10,10,0.95);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            overflow-x: auto;
+        }
+
+        .thumb {
+            width: 100px;
+            height: 70px;
+            flex-shrink: 0;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%) brightness(0.5);
+            transition: all 0.4s ease;
+        }
+
+        /* Efecto al pasar el mouse sobre la miniatura */
+        .thumb:hover img {
+            filter: grayscale(0%) brightness(0.8);
+        }
+
+        /* Efecto cuando la miniatura es la activa (borde y color) */
+        .thumb.active-thumb {
+            border-color: rgba(99, 102, 241, 0.6);
+            transform: translateY(-5px);
+        }
+
+        .thumb.active-thumb img {
+            filter: grayscale(0%) brightness(1);
         }
 
         /* Navegación Minimalista */
         .nav-minimal {
-            padding: 40px;
+            padding: 30px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -50,68 +127,17 @@
             letter-spacing: 5px;
         }
 
-        /* Contenedor del Slider */
-        .slider-container {
-            width: 100%;
-            height: 60vh;
-            overflow: hidden;
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-
-        .slider-track {
-            display: flex;
-            width: calc(350px * 10); /* Ajuste según número de imágenes */
-            animation: scroll-infinite 30s linear infinite;
-        }
-
-        .slide {
-            width: 350px;
-            height: 500px;
-            padding: 0 15px;
-            flex-shrink: 0;
-            transition: transform 0.5s ease;
-        }
-
-        .slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 4px;
-            filter: grayscale(100%) brightness(0.6);
-            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .slide:hover img {
-            filter: grayscale(0%) brightness(1);
-            transform: scale(1.05);
-            border-color: rgba(255,255,255,0.3);
-        }
-
-        /* Animación de Desplazamiento Infinito */
-        @keyframes scroll-infinite {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-350px * 5)); }
-        }
-
-        /* Footer de Galería */
+        /* Footer */
         .gallery-footer {
-            padding: 60px;
+            padding: 30px 60px;
             text-align: center;
         }
 
         .gallery-footer p {
             color: #444;
-            font-size: 0.75rem;
-            letter-spacing: 8px;
+            font-size: 0.7rem;
+            letter-spacing: 7px;
             text-transform: uppercase;
-        }
-
-        /* Pausa al pasar el mouse */
-        .slider-container:hover .slider-track {
-            animation-play-state: paused;
         }
     </style>
 </head>
@@ -122,24 +148,56 @@
         <span>PORTAFOLIO VISUAL</span>
     </nav>
 
-    <div class="slider-container">
-        <div class="slider-track">
-            <div class="slide"><img src="img/001.png" alt="Diseño"></div>
-            <div class="slide"><img src="img/002.png" alt="Diseño"></div>
-            <div class="slide"><img src="img/003.png" alt="Diseño"></div>
-            <div class="slide"><img src="img/004.jpg" alt="Diseño"></div>
-            <div class="slide"><img src="img/005.png" alt="Diseño"></div>
-            <div class="slide"><img src="img/006.png" alt="Diseño"></div>
-            <div class="slide"><img src="img/007.png" alt="Diseño"></div>
-            <div class="slide"><img src="img/008.png" alt="Diseño"></div>
-            <div class="slide"><img src="img/009.jpg" alt="Diseño"></div>
-            <div class="slide"><img src="img/010.png" alt="Diseño"></div>
+    <div class="viewer-container">
+        <img src="img/001.png" alt="Visor Principal" id="viewerImage" class="active-img">
+        <p class="viewer-caption" id="viewerCaption">PROYECTO 1 | IDENTIDAD VISUAL</p>
+    </div>
+
+    <div class="thumbnails-container">
+        <div class="thumb active-thumb" onclick="activateViewer(0, 'img/001.png', 'PROYECTO 1 | IDENTIDAD VISUAL')">
+            <img src="img/001.png" alt="Thumbnail 1">
+        </div>
+        <div class="thumb" onclick="activateViewer(1, 'img/002.png', 'PROYECTO 2 | DISEÑO EDITORIAL')">
+            <img src="img/002.png" alt="Thumbnail 2">
+        </div>
+        <div class="thumb" onclick="activateViewer(2, 'img/003.png', 'PROYECTO 3 | PUBLICIDAD DIGITAL')">
+            <img src="img/003.png" alt="Thumbnail 3">
+        </div>
+        <div class="thumb" onclick="activateViewer(3, 'img/004.jpg', 'PROYECTO 4 | ESTRATEGIA DIGITAL')">
+            <img src="img/004.jpg" alt="Thumbnail 4">
+        </div>
+        <div class="thumb" onclick="activateViewer(4, 'img/005.png', 'PROYECTO 5 | BRANDING AVANZADO')">
+            <img src="img/005.png" alt="Thumbnail 5">
         </div>
     </div>
 
     <div class="gallery-footer">
-        <p>DESLIZA PARA EXPLORAR 15 AÑOS DE ARTE GRÁFICO</p>
+        <p>HAZ CLIC EN UN CUADRO PARA EXPLORAR 15 AÑOS DE ARTE GRÁFICO</p>
     </div>
+
+    <script>
+        function activateViewer(index, imgSrc, captionText) {
+            // 1. Obtenemos los elementos principales
+            const viewerImg = document.getElementById('viewerImage');
+            const viewerCaption = document.getElementById('viewerCaption');
+            const thumbnails = document.querySelectorAll('.thumb');
+
+            // 2. Transición suave de la imagen principal
+            viewerImg.style.opacity = '0'; // Se desvanece
+            
+            // 3. Pequeño retraso para la coreografía visual
+            setTimeout(() => {
+                viewerImg.src = imgSrc; // Cambiamos la imagen
+                viewerCaption.innerText = captionText; // Cambiamos la leyenda
+                
+                // 4. Actualizamos el estado de las miniaturas
+                thumbnails.forEach(thumb => thumb.classList.remove('active-thumb')); // Limpiamos todos
+                thumbnails[index].classList.add('active-thumb'); // Activamos el que se hizo clic
+                
+                viewerImg.style.opacity = '1'; // Reaparece
+            }, 300); // Retraso suave para el efecto
+        }
+    </script>
 
 </body>
 </html>
