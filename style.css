@@ -1,8 +1,12 @@
 /* ============================================================
-   RESTAURACIÓN TOTAL: FONDO ELEGANTE + EFECTO PUERTA
+   ESTILO ELITE: REVELACIÓN ORGÁNICA (CÓDIGO COMPLETO)
    ============================================================ */
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
 
 :root {
     --bg-dark: #020202;
@@ -21,7 +25,7 @@ body {
     position: relative;
 }
 
-/* RECUPERACIÓN DEL FONDO EN MOVIMIENTO ELEGANTE */
+/* FONDO EN MOVIMIENTO ELEGANTE RECUPERADO */
 body::before {
     content: "";
     position: fixed;
@@ -39,60 +43,65 @@ body::before {
     100% { opacity: 1; transform: scale(1.1); }
 }
 
-/* CONTENEDOR DE LA PORTADA */
+/* CONTENEDOR PRINCIPAL */
 .hero-wrapper {
     display: flex;
     align-items: center;
-    gap: 20px;
-    animation: entrance 1.5s ease-out forwards;
+    gap: 0; /* Ajustado para que el texto salga pegado a la línea */
 }
 
-/* EL LOGO (LA PUERTA) */
+/* 1. EL LOGO (APARECE EN SU SITIO) */
 .main-logo-container {
     position: relative;
-    width: 480px; /* Tamaño grande e imponente */
-    height: auto;
-    /* EFECTO DE LUZ DE CONTORNO (RIM LIGHT) */
-    filter: 
-        drop-shadow(15px 0 20px rgba(255,255,255,0.25)) 
-        brightness(0.9);
+    width: 480px; 
+    filter: drop-shadow(15px 0 20px rgba(255,255,255,0.25)) brightness(0.9);
+    opacity: 0;
+    animation: fadeInOnly 1.5s ease-out forwards;
 }
 
 .main-logo {
     width: 100%;
     height: auto;
     display: block;
-    /* Máscara para que el lado izquierdo esté en penumbra */
     mask-image: linear-gradient(to right, rgba(0,0,0,0.4) 0%, rgba(0,0,0,1) 80%);
     -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0.4) 0%, rgba(0,0,0,1) 80%);
 }
 
-/* EL BLOQUE DE TEXTO (LA FUENTE DE LUZ) */
+/* 2. LA LÍNEA CENTRAL (APARECE CON EL LOGO) */
 .title-group {
     padding-left: 40px;
     border-left: 2px solid rgba(255,255,255,0.9);
-    /* El texto emite luz hacia la izquierda */
-    filter: drop-shadow(-10px 0 20px rgba(255,255,255,0.3));
+    overflow: hidden; /* CRITICO: Para que las letras parezcan salir de la línea */
+    opacity: 0;
+    animation: fadeInOnly 1.5s ease-out forwards;
 }
 
-.title-group h1 {
-    font-weight: 100;
-    font-size: clamp(2.5rem, 7vw, 5rem);
-    letter-spacing: -2px;
-    line-height: 0.85;
-    text-transform: uppercase;
+/* 3. LAS LETRAS (SALEN HACIA LA DERECHA) */
+.title-group h1, 
+.title-group .subtitle,
+.title-group p {
+    opacity: 0;
+    transform: translateX(-100%); /* Escondidas detrás de la línea */
+    animation: slideRightFromLine 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    animation-delay: 1.3s; /* Espera a que la línea sea visible */
 }
 
-.subtitle {
-    font-size: 0.75rem;
-    color: #aaa;
-    letter-spacing: 6px;
-    margin-bottom: 10px;
+/* KEYFRAMES DE LA COREOGRAFÍA */
+
+@keyframes fadeInOnly {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
-@keyframes entrance {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+@keyframes slideRightFromLine {
+    from { 
+        opacity: 0;
+        transform: translateX(-100%); 
+    }
+    to { 
+        opacity: 1;
+        transform: translateX(0); 
+    }
 }
 
 /* MENÚ NANCY DERECHA */
