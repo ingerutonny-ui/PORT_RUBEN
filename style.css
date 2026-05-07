@@ -1,5 +1,5 @@
 /* ============================================================
-   ESTILO ELITE: REVELACIÓN ORGÁNICA (CÓDIGO COMPLETO)
+   PORTAFOLIO ELITE: RESTAURACIÓN Y COREOGRAFÍA DE MAGIA
    ============================================================ */
 
 * { 
@@ -10,12 +10,12 @@
 
 :root {
     --bg-dark: #020202;
-    --accent: #ffffff;
 }
 
 body {
     background-color: var(--bg-dark);
     color: #fff;
+    /* Fuente Inter delgada para mantener la elegancia original */
     font-family: 'Inter', sans-serif;
     min-height: 100vh;
     display: flex;
@@ -25,7 +25,7 @@ body {
     position: relative;
 }
 
-/* FONDO EN MOVIMIENTO ELEGANTE RECUPERADO */
+/* FONDO EN MOVIMIENTO ORIGINAL */
 body::before {
     content: "";
     position: fixed;
@@ -43,68 +43,84 @@ body::before {
     100% { opacity: 1; transform: scale(1.1); }
 }
 
-/* CONTENEDOR PRINCIPAL */
+/* CONTENEDOR DE LA PORTADA */
 .hero-wrapper {
     display: flex;
     align-items: center;
-    gap: 0; /* Ajustado para que el texto salga pegado a la línea */
+    justify-content: center;
 }
 
-/* 1. EL LOGO (APARECE EN SU SITIO) */
+/* 1. EL LOGO (ACHICADO PARA ELEGANCIA) */
 .main-logo-container {
     position: relative;
-    width: 480px; 
-    filter: drop-shadow(15px 0 20px rgba(255,255,255,0.25)) brightness(0.9);
+    width: 380px; /* Reducido para que no sea invasivo */
+    filter: drop-shadow(15px 0 20px rgba(255,255,255,0.2)) brightness(0.85);
     opacity: 0;
-    animation: fadeInOnly 1.5s ease-out forwards;
+    animation: fadeInStatic 1.5s ease-out forwards;
 }
 
 .main-logo {
     width: 100%;
     height: auto;
     display: block;
-    mask-image: linear-gradient(to right, rgba(0,0,0,0.4) 0%, rgba(0,0,0,1) 80%);
-    -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0.4) 0%, rgba(0,0,0,1) 80%);
+    mask-image: linear-gradient(to right, rgba(0,0,0,0.3) 0%, rgba(0,0,0,1) 80%);
+    -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0.3) 0%, rgba(0,0,0,1) 80%);
 }
 
-/* 2. LA LÍNEA CENTRAL (APARECE CON EL LOGO) */
+/* 2. LA LÍNEA CENTRAL Y CONTENEDOR DE TEXTO */
 .title-group {
     padding-left: 40px;
-    border-left: 2px solid rgba(255,255,255,0.9);
-    overflow: hidden; /* CRITICO: Para que las letras parezcan salir de la línea */
+    border-left: 2px solid rgba(255,255,255,0.8);
+    /* EL SECRETO: Esconde todo lo que esté a la izquierda de la línea */
+    overflow: hidden; 
     opacity: 0;
-    animation: fadeInOnly 1.5s ease-out forwards;
+    animation: fadeInStatic 1.5s ease-out forwards;
 }
 
-/* 3. LAS LETRAS (SALEN HACIA LA DERECHA) */
-.title-group h1, 
-.title-group .subtitle,
-.title-group p {
+/* 3. LAS LETRAS (NACEN DESDE LA LÍNEA HACIA LA DERECHA) */
+.text-reveal {
     opacity: 0;
-    transform: translateX(-100%); /* Escondidas detrás de la línea */
-    animation: slideRightFromLine 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-    animation-delay: 1.3s; /* Espera a que la línea sea visible */
+    /* Empieza totalmente fuera de la vista (detrás de la línea) */
+    transform: translateX(-105%); 
+    animation: slideFromLine 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 1.4s; /* Espera a que la línea esté firme */
 }
 
-/* KEYFRAMES DE LA COREOGRAFÍA */
+.title-group h1 {
+    font-weight: 100; /* Extra light como el original */
+    font-size: 4.5rem;
+    letter-spacing: -1px;
+    line-height: 0.85;
+    text-transform: uppercase;
+    margin: 10px 0;
+}
 
-@keyframes fadeInOnly {
+.subtitle {
+    font-size: 0.7rem;
+    color: #888;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+.tagline {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 2px;
+}
+
+/* ANIMACIONES */
+@keyframes fadeInStatic {
     from { opacity: 0; }
     to { opacity: 1; }
 }
 
-@keyframes slideRightFromLine {
-    from { 
-        opacity: 0;
-        transform: translateX(-100%); 
-    }
-    to { 
-        opacity: 1;
-        transform: translateX(0); 
-    }
+@keyframes slideFromLine {
+    0% { opacity: 0; transform: translateX(-100%); }
+    20% { opacity: 1; }
+    100% { opacity: 1; transform: translateX(0); }
 }
 
-/* MENÚ NANCY DERECHA */
+/* MENÚ NANCY (DERECHA) */
 .side-menu {
     position: fixed;
     right: 0; top: 50%;
@@ -115,21 +131,20 @@ body::before {
 }
 
 .btn-nancy {
-    background: rgba(0,0,0,0.9);
-    border: 1px solid #222;
-    color: #666;
-    padding: 18px 35px;
-    font-size: 0.65rem;
+    background: rgba(0,0,0,0.8);
+    border: 1px solid #1a1a1a;
+    color: #555;
+    padding: 18px 30px;
+    font-size: 0.6rem;
     letter-spacing: 4px;
     text-transform: uppercase;
     cursor: pointer;
-    transition: 0.5s;
-    transform: translateX(75%);
+    transition: 0.4s;
+    transform: translateX(70%);
 }
 
 .btn-nancy:hover {
     transform: translateX(0);
     color: #fff;
     border-color: #fff;
-    box-shadow: -15px 0 30px rgba(255,255,255,0.1);
 }
