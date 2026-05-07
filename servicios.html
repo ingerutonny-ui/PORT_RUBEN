@@ -4,37 +4,146 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SERVICIOS | Lic. Alarcón</title>
-    <link rel="stylesheet" href="style.css"> <link rel="stylesheet" href="style_servicios.css"> <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ESTILOS EXCLUSIVOS PARA ESTA PÁGINA PARA NO TOCAR EL STYLE.CSS */
+        .services-main {
+            max-width: 900px;
+            width: 90%;
+            margin: 0 auto;
+            padding: 80px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+            /* Aseguramos que el contenido aparezca suave */
+            opacity: 0;
+            animation: fadeInServices 1.5s forwards;
+        }
+
+        .services-header {
+            border-left: 4px solid #fff;
+            padding-left: 30px;
+        }
+
+        .services-header p {
+            letter-spacing: 5px;
+            color: #666;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .services-header h2 {
+            font-weight: 100;
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-top: 10px;
+        }
+
+        .services-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 45px;
+        }
+
+        .service-card {
+            position: relative;
+            padding-left: 60px;
+        }
+
+        .service-card span {
+            position: absolute;
+            left: 0; 
+            top: 0;
+            font-size: 1.4rem;
+            font-weight: 300;
+            color: rgba(255,255,255,0.2);
+        }
+
+        .service-card h3 {
+            font-weight: 300;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .service-card p {
+            color: #888;
+            line-height: 1.7;
+            font-size: 1rem;
+            max-width: 700px;
+        }
+
+        /* BOTÓN VOLVER - ESTILO SEMICIRCULAR CAJERO */
+        .btn-volver-container {
+            margin-top: 20px;
+        }
+
+        .btn-volver {
+            display: inline-block;
+            background: rgba(15, 15, 15, 0.9);
+            border: 1px solid #333;
+            color: #fff;
+            padding: 18px 45px;
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            border-radius: 50px; /* Semicircular total */
+            text-decoration: none;
+            transition: 0.4s;
+            text-transform: uppercase;
+        }
+
+        .btn-volver:hover {
+            background: #fff;
+            color: #000;
+            transform: translateY(-3px);
+        }
+
+        @keyframes fadeInServices {
+            to { opacity: 1; }
+        }
+
+        /* AJUSTE MÓVIL RÁPIDO */
+        @media (max-width: 768px) {
+            .services-header h2 { font-size: 2.5rem; }
+            .service-card h3 { font-size: 1.4rem; }
+        }
+    </style>
 </head>
 <body>
 
-    <main class="services-container">
+    <main class="services-main">
         <header class="services-header">
             <p>SOLUCIONES VISUALES</p>
             <h2>MIS SERVICIOS</h2>
         </header>
 
-        <section class="services-list">
-            <div class="service-item">
-                <span class="service-number">01</span>
+        <div class="services-grid">
+            <div class="service-card">
+                <span>01</span>
                 <h3>IDENTIDAD CORPORATIVA</h3>
-                <p>Diseño de logotipos y manuales de marca que trascienden lo visual para construir autoridad.</p>
+                <p>Diseño de logotipos y manuales de marca que trascienden lo visual para construir autoridad real en el mercado.</p>
             </div>
 
-            <div class="service-item">
-                <span class="service-number">02</span>
+            <div class="service-card">
+                <span>02</span>
                 <h3>DISEÑO EDITORIAL</h3>
-                <p>Maquetación profesional para revistas, libros y catálogos digitales con acabados de alta gama.</p>
+                <p>Maquetación profesional para revistas, libros y catálogos digitales con acabados de alta gama y legibilidad perfecta.</p>
             </div>
 
-            <div class="service-item">
-                <span class="service-number">03</span>
+            <div class="service-card">
+                <span>03</span>
                 <h3>PUBLICIDAD DIGITAL</h3>
-                <p>Creación de contenido visual de alto impacto para redes sociales enfocado en conversión.</p>
+                <p>Creación de contenido visual de alto impacto para redes sociales, enfocado en captar la atención en segundos.</p>
             </div>
-        </section>
+        </div>
 
-        <a href="index.html" class="btn-back">← VOLVER AL INICIO</a>
+        <div class="btn-volver-container">
+            <a href="index.html" class="btn-volver">← VOLVER AL INICIO</a>
+        </div>
     </main>
 
 </body>
