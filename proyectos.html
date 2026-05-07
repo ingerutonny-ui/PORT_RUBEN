@@ -8,101 +8,22 @@
     <link rel="stylesheet" href="style.css">
     
     <style>
-        /* ============================================================
-           DISEÑO DE GALERÍA DE PROYECTOS DINÁMICA (EFECTO LIGHTBOX)
-           ============================================================ */
         body.gallery-view {
-            background-color: #020202;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            overflow: hidden;
-        }
-
-        /* 1. Visor Principal (Donde aparece la imagen grande) */
-        .viewer-container {
-            width: 100%;
-            height: 60vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(10,10,10,0.9) 100%);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.9);
-        }
-
-        .active-img {
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
-            box-shadow: 0 0 50px rgba(255,255,255,0.05);
-            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-            filter: brightness(0.9); /* Sutil para no quemar la vista */
-        }
-
-        /* Leyenda de la Imagen Principal (Visor) */
-        .viewer-caption {
-            position: absolute;
-            bottom: 30px;
-            left: 30px;
+            background-color: #050505;
             color: #fff;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+            min-height: 100vh;
         }
 
-        /* 2. Mesa de Luz / Miniaturas (Donde haces clic) */
-        .thumbnails-container {
-            width: 100%;
-            padding: 20px;
-            background: rgba(10,10,10,0.95);
-            border-top: 1px solid rgba(255,255,255,0.05);
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            overflow-x: auto;
-        }
-
-        .thumb {
-            width: 100px;
-            height: 70px;
-            flex-shrink: 0;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: all 0.4s ease;
-            position: relative;
-        }
-
-        .thumb img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(100%) brightness(0.5);
-            transition: all 0.4s ease;
-        }
-
-        /* Efecto al pasar el mouse sobre la miniatura */
-        .thumb:hover img {
-            filter: grayscale(0%) brightness(0.8);
-        }
-
-        /* Efecto cuando la miniatura es la activa (borde y color) */
-        .thumb.active-thumb {
-            border-color: rgba(99, 102, 241, 0.6);
-            transform: translateY(-5px);
-        }
-
-        .thumb.active-thumb img {
-            filter: grayscale(0%) brightness(1);
-        }
-
-        /* Navegación Minimalista */
         .nav-minimal {
-            padding: 30px 40px;
+            padding: 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: sticky;
+            top: 0;
+            background: rgba(5,5,5,0.9);
+            z-index: 100;
+            backdrop-filter: blur(10px);
         }
 
         .nav-minimal a {
@@ -110,33 +31,87 @@
             text-decoration: none;
             font-size: 0.7rem;
             letter-spacing: 4px;
-            border: 1px solid rgba(255,255,255,0.2);
-            padding: 10px 25px;
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 12px 30px;
             border-radius: 50px;
             transition: 0.4s;
         }
 
-        .nav-minimal a:hover {
-            background: #fff;
-            color: #000;
+        .nav-minimal a:hover { background: #fff; color: #000; }
+
+        /* ============================================================
+           ESTILO MASONRY (ALBAÑILERÍA) PARA +50 IMÁGENES
+           ============================================================ */
+        .masonry-container {
+            column-count: 4; /* 4 columnas para escritorio */
+            column-gap: 15px;
+            padding: 0 40px 100px 40px;
+            max-width: 1600px;
+            margin: 0 auto;
         }
 
-        .nav-minimal span {
-            color: rgba(255,255,255,0.4);
-            font-size: 0.7rem;
-            letter-spacing: 5px;
+        .masonry-item {
+            display: inline-block;
+            width: 100%;
+            margin-bottom: 15px;
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            background: #111;
+            cursor: pointer;
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
-        /* Footer */
-        .gallery-footer {
-            padding: 30px 60px;
+        .masonry-item img {
+            width: 100%;
+            display: block;
+            filter: grayscale(100%) brightness(0.7);
+            transition: all 0.6s ease;
+        }
+
+        /* EFECTO AL PASAR EL MOUSE */
+        .masonry-item:hover {
+            transform: translateY(-8px);
+            z-index: 10;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        }
+
+        .masonry-item:hover img {
+            filter: grayscale(0%) brightness(1);
+            transform: scale(1.05);
+        }
+
+        /* Overlay con Info */
+        .item-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            opacity: 0;
+            transition: 0.4s;
+        }
+
+        .masonry-item:hover .item-info { opacity: 1; }
+
+        .item-info span {
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            font-weight: 300;
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 1200px) { .masonry-container { column-count: 3; } }
+        @media (max-width: 800px) { .masonry-container { column-count: 2; } }
+        @media (max-width: 500px) { .masonry-container { column-count: 1; } }
+
+        .footer-text {
             text-align: center;
-        }
-
-        .gallery-footer p {
+            padding: 50px;
             color: #444;
+            letter-spacing: 5px;
             font-size: 0.7rem;
-            letter-spacing: 7px;
             text-transform: uppercase;
         }
     </style>
@@ -144,60 +119,34 @@
 <body class="gallery-view">
 
     <nav class="nav-minimal">
-        <a href="index.html">← VOLVER</a>
-        <span>PORTAFOLIO VISUAL</span>
+        <a href="index.html">← INICIO</a>
+        <div style="letter-spacing: 5px; font-size: 0.7rem; color: #666;">15 AÑOS DE EXPERIENCIA</div>
     </nav>
 
-    <div class="viewer-container">
-        <img src="img/001.png" alt="Visor Principal" id="viewerImage" class="active-img">
-        <p class="viewer-caption" id="viewerCaption">PROYECTO 1 | IDENTIDAD VISUAL</p>
-    </div>
+    <div class="masonry-container">
+        <div class="masonry-item">
+            <img src="img/001.png" alt="Diseño 1">
+            <div class="item-info"><span>ARTE GRÁFICO 01</span></div>
+        </div>
+        <div class="masonry-item">
+            <img src="img/002.png" alt="Diseño 2">
+            <div class="item-info"><span>ESTRATEGIA DIGITAL</span></div>
+        </div>
+        <div class="masonry-item">
+            <img src="img/003.png" alt="Diseño 3">
+            <div class="item-info"><span>IDENTIDAD VISUAL</span></div>
+        </div>
+        <div class="masonry-item">
+            <img src="img/004.jpg" alt="Diseño 4">
+            <div class="item-info"><span>DISEÑO PREMIUM</span></div>
+        </div>
+        <div class="masonry-item">
+            <img src="img/005.png" alt="Diseño 5">
+            <div class="item-info"><span>PORTAFOLIO 2026</span></div>
+        </div>
+        </div>
 
-    <div class="thumbnails-container">
-        <div class="thumb active-thumb" onclick="activateViewer(0, 'img/001.png', 'PROYECTO 1 | IDENTIDAD VISUAL')">
-            <img src="img/001.png" alt="Thumbnail 1">
-        </div>
-        <div class="thumb" onclick="activateViewer(1, 'img/002.png', 'PROYECTO 2 | DISEÑO EDITORIAL')">
-            <img src="img/002.png" alt="Thumbnail 2">
-        </div>
-        <div class="thumb" onclick="activateViewer(2, 'img/003.png', 'PROYECTO 3 | PUBLICIDAD DIGITAL')">
-            <img src="img/003.png" alt="Thumbnail 3">
-        </div>
-        <div class="thumb" onclick="activateViewer(3, 'img/004.jpg', 'PROYECTO 4 | ESTRATEGIA DIGITAL')">
-            <img src="img/004.jpg" alt="Thumbnail 4">
-        </div>
-        <div class="thumb" onclick="activateViewer(4, 'img/005.png', 'PROYECTO 5 | BRANDING AVANZADO')">
-            <img src="img/005.png" alt="Thumbnail 5">
-        </div>
-    </div>
-
-    <div class="gallery-footer">
-        <p>HAZ CLIC EN UN CUADRO PARA EXPLORAR 15 AÑOS DE ARTE GRÁFICO</p>
-    </div>
-
-    <script>
-        function activateViewer(index, imgSrc, captionText) {
-            // 1. Obtenemos los elementos principales
-            const viewerImg = document.getElementById('viewerImage');
-            const viewerCaption = document.getElementById('viewerCaption');
-            const thumbnails = document.querySelectorAll('.thumb');
-
-            // 2. Transición suave de la imagen principal
-            viewerImg.style.opacity = '0'; // Se desvanece
-            
-            // 3. Pequeño retraso para la coreografía visual
-            setTimeout(() => {
-                viewerImg.src = imgSrc; // Cambiamos la imagen
-                viewerCaption.innerText = captionText; // Cambiamos la leyenda
-                
-                // 4. Actualizamos el estado de las miniaturas
-                thumbnails.forEach(thumb => thumb.classList.remove('active-thumb')); // Limpiamos todos
-                thumbnails[index].classList.add('active-thumb'); // Activamos el que se hizo clic
-                
-                viewerImg.style.opacity = '1'; // Reaparece
-            }, 300); // Retraso suave para el efecto
-        }
-    </script>
+    <p class="footer-text">Explora la trayectoria completa del Lic. Alarcón</p>
 
 </body>
 </html>
