@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PROYECTOS | Rubén Alarcón</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400&display=swap" rel="stylesheet">
+    <title>PROYECTOS | Lic. Alarcón</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="gallery-view">
@@ -14,40 +14,24 @@
         <span>PORTAFOLIO VISUAL</span>
     </nav>
 
-    <div class="visual-grid">
-        <div class="grid-item" onclick="openFull(this)"><img src="img/001.png" alt="Diseño 001"></div>
-        <div class="grid-item" onclick="openFull(this)"><img src="img/002.png" alt="Diseño 002"></div>
-        <div class="grid-item" onclick="openFull(this)"><img src="img/003.png" alt="Diseño 003"></div>
-        <div class="grid-item" onclick="openFull(this)"><img src="img/004.jpg" alt="Diseño 004"></div>
-        <div class="grid-item" onclick="openFull(this)"><img src="img/005.png" alt="Diseño 001"></div>
-        <div class="grid-item" onclick="openFull(this)"><img src="img/006.png" alt="Diseño 002"></div>
-        <div class="grid-item" onclick="openFull(this)"><img src="img/007.png" alt="Diseño 003"></div>
-        <div class="grid-item" onclick="openFull(this)"><img src="img/008.jpg" alt="Diseño 004"></div>
-        <div class="grid-item" onclick="openFull(this)"><img src="img/009.jpg" alt="Diseño 001"></div>
-        <div class="grid-item" onclick="openFull(this)"><img src="img/010.jpg" alt="Diseño 002"></div>
-        <div class="grid-item" onclick="openFull(this)"><img src="img/011.jpg" alt="Diseño 003"></div>
-        <div class="grid-item" onclick="openFull(this)"><img src="img/012.png" alt="Diseño 004"></div>
-        <div class="grid-item" onclick="openFull(this)"><img src="img/013.png" alt="Diseño 001"></div>
-        <div class="grid-item" onclick="openFull(this)"><img src="img/014.png" alt="Diseño 002"></div>
-        <div class="grid-item" onclick="openFull(this)"><img src="img/015.png" alt="Diseño 003"></div>
-        <div class="grid-item" onclick="openFull(this)"><img src="img/016.png" alt="Diseño 004"></div>
-        <div class="grid-item" onclick="openFull(this)"><img src="img/017.png" alt="Diseño 001"></div>
-        <div class="grid-item" onclick="openFull(this)"><img src="img/018.png" alt="Diseño 002"></div>
-        <div class="grid-item" onclick="openFull(this)"><img src="img/019.png" alt="Diseño 003"></div>
-        <div class="grid-item" onclick="openFull(this)"><img src="img/020.png" alt="Diseño 004"></div>
-        <div class="grid-item" onclick="openFull(this)"><img src="img/021.png" alt="Diseño 004"></div>
+    <div class="slider-container">
+        <div class="slider-track">
+            <div class="slide"><img src="img/001.png" alt="Diseño"></div>
+            <div class="slide"><img src="img/002.png" alt="Diseño"></div>
+            <div class="slide"><img src="img/003.png" alt="Diseño"></div>
+            <div class="slide"><img src="img/004.jpg" alt="Diseño"></div>
+            <div class="slide"><img src="img/005.png" alt="Diseño"></div>
+            <div class="slide"><img src="img/001.png" alt="Diseño"></div>
+            <div class="slide"><img src="img/002.png" alt="Diseño"></div>
+            <div class="slide"><img src="img/003.png" alt="Diseño"></div>
+            <div class="slide"><img src="img/004.jpg" alt="Diseño"></div>
+            <div class="slide"><img src="img/005.png" alt="Diseño"></div>
         </div>
-
-    <div id="viewer" onclick="this.style.display='none'">
-        <img id="full-img">
     </div>
 
-    <script>
-        function openFull(el) {
-            const fullImg = document.getElementById('full-img');
-            fullImg.src = el.querySelector('img').src;
-            document.getElementById('viewer').style.display = 'flex';
-        }
-    </script>
+    <div class="gallery-footer">
+        <p>DESLIZA PARA EXPLORAR 15 AÑOS DE ARTE GRÁFICO</p>
+    </div>
+
 </body>
 </html>
