@@ -1,102 +1,92 @@
 /* ============================================================
-   PORTAFOLIO ELITE - RESTAURACIÓN TOTAL LIC. ALARCÓN
+   ESTILO ELITE - EFECTO DE REVELACIÓN "LA PUERTA"
    ============================================================ */
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-    --bg-dark: #030303;
+    --bg-dark: #000000; /* Negro Absoluto para la sombra total */
     --accent: #6366f1;
     --text-main: #ffffff;
+    --light-source: rgba(255, 255, 255, 0.95); /* Luz intensa blanca */
 }
 
-/* RECUPERACIÓN DEL FONDO MODERNO */
 body {
     background-color: var(--bg-dark);
     color: var(--text-main);
     font-family: 'Inter', sans-serif;
-    min-height: 100vh;
-    overflow-x: hidden;
-    position: relative;
-}
-
-body::before {
-    content: "";
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: 
-        radial-gradient(circle at 70% 30%, rgba(99, 102, 241, 0.12) 0%, transparent 50%),
-        radial-gradient(circle at 10% 90%, rgba(168, 85, 247, 0.08) 0%, transparent 50%);
-    z-index: -1;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* PORTADA: CENTRADO ABSOLUTO Y ENTRADA ELEGANTE */
 .home-view {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
 
 .hero-wrapper {
     width: 100%;
     max-width: 1200px;
     padding: 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     animation: entranceSlide 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
 }
 
+/* LA PUERTA (EL LOGO - `LORD.png`) */
 .brand-section {
     display: flex;
     align-items: center;
-    gap: 50px; /* Aumentado el espacio ligeramente */
+    gap: 0; /* Unimos los elementos para simular el borde de la puerta */
 }
 
-/* EFECTO DE MEDIA LUZ Y TAMAÑO GRANDE EN EL LOGO (CSS) */
 .main-logo-container {
     position: relative;
-    width: 380px; /* Tamaño más grande controlado */
+    width: 420px; /* Tamaño grande y potente */
     height: auto;
     overflow: hidden;
-    filter: drop-shadow(0 0 30px rgba(255,255,255,0.08));
+    /* EFECTO DE LUZ DE CONTORNO AGRESIVO (EL BRILLO) */
+    filter: 
+        drop-shadow(0 0 5px var(--light-source)) /* Brillo de borde */
+        drop-shadow(0 0 25px rgba(255,255,255,0.3)) /* Halo suave */
+        brightness(0.05); /* Logo casi totalmente oscuro */
+    transition: filter 1s ease;
 }
 
 .main-logo {
     width: 100%;
     height: auto;
+    /* Sombra interna para simular textura de madera oscura */
+    box-shadow: inset 0 0 20px rgba(0,0,0,1);
 }
 
-/* La máscara de "media luz" */
-.main-logo-container::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* Gradiente que oscurece el logo para simular penumbra */
-    background: linear-gradient(
-        135deg,
-        rgba(3, 3, 3, 0.9) 0%,   /* Muy oscuro en la esquina superior izquierda */
-        rgba(3, 3, 3, 0.4) 50%,  /* Penumbra en el centro */
-        rgba(255, 255, 255, 0) 100% /* Claro en la esquina inferior derecha */
-    );
-    pointer-events: none; /* Permite clics a través de la máscara */
+/* LA LUZ (EL TEXTO - "15 AÑOS... DIGITAL") */
+.title-group {
+    padding-left: 20px;
+    border-left: 4px solid var(--light-source); /* Simula la columna de luz intensa */
+    /* Resplandor del texto para simular fuente de luz */
+    filter: drop-shadow(0 0 15px var(--light-source));
 }
 
 .title-group h1 {
     font-weight: 100;
-    font-size: clamp(2.5rem, 7vw, 5rem);
+    font-size: clamp(2rem, 6vw, 4.5rem);
     letter-spacing: -3px;
     line-height: 0.85;
     text-transform: uppercase;
-    background: linear-gradient(to bottom, #fff, #666);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #fff;
+    margin-bottom: 5px;
 }
 
 .subtitle {
     font-size: 0.7rem;
-    color: var(--accent);
+    color: #fff; /* Texto blanco puro para simular luz */
     letter-spacing: 6px;
     margin-bottom: 10px;
 }
@@ -106,7 +96,7 @@ body::before {
     to { opacity: 1; transform: translateX(0); filter: blur(0); }
 }
 
-/* MENÚ LATERAL */
+/* MENÚ LATERAL (MANTENEMOS TU ESTILO) */
 .side-menu {
     position: fixed;
     right: 0; top: 50%;
@@ -118,9 +108,9 @@ body::before {
 }
 
 .btn-nancy {
-    background: rgba(10,10,10,0.9);
-    border: 1px solid #222;
-    color: #666;
+    background: rgba(0,0,0,0.95);
+    border: 1px solid #1a1a1a;
+    color: #555;
     padding: 18px 35px;
     font-size: 0.65rem;
     letter-spacing: 4px;
@@ -133,58 +123,6 @@ body::before {
 .btn-nancy:hover {
     transform: translateX(0);
     color: #fff;
-    border-color: var(--accent);
-    box-shadow: -15px 0 30px rgba(99, 102, 241, 0.2);
-}
-
-/* SECCIÓN SERVICIOS */
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    padding: 40px;
-}
-
-.service-card {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.05);
-    padding: 50px 30px;
-    transition: 0.4s;
-}
-
-.service-card:hover {
-    border-color: var(--accent);
-    background: rgba(99, 102, 241, 0.05);
-}
-
-/* NAVEGACIÓN PROYECTOS */
-.nav-minimal {
-    padding: 40px;
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.7rem;
-    letter-spacing: 4px;
-}
-
-.nav-minimal a { color: #555; text-decoration: none; }
-
-/* GALERÍA */
-.visual-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 0 40px 40px;
-}
-
-.grid-item img {
-    width: 100%;
-    aspect-ratio: 1/1;
-    object-fit: cover;
-    border: 1px solid #1a1a1a;
-    transition: 0.5s;
-}
-
-.grid-item img:hover {
-    border-color: var(--accent);
-    transform: scale(1.03);
+    border-color: #fff;
+    box-shadow: -15px 0 35px rgba(255, 255, 255, 0.1);
 }
