@@ -8,11 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400&display=swap" rel="stylesheet">
     
     <style>
-        /* ============================================================
-           RECUPERACIÓN DE DISEÑO DE CUADROS ELEGANTES (GRID) - REVISADO
-           ============================================================ */
-        
-        /* Contenedor principal centrado con animación suave */
         .services-main {
             max-width: 1200px;
             width: 90%;
@@ -25,7 +20,6 @@
             animation: fadeInServices 1.5s forwards;
         }
 
-        /* Cabecera elegante con línea vertical */
         .services-header {
             border-left: 4px solid #fff;
             padding-left: 30px;
@@ -47,25 +41,22 @@
             margin-top: 10px;
         }
 
-        /* CUADRÍCULA DE TRES CUADROS (GRID) */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
         }
 
-        /* ESTILO DE CADA CUADRO ELEGANTE */
         .service-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 50px 35px 80px 35px; /* Más padding abajo para el número */
+            padding: 50px 35px 80px 35px;
             position: relative;
             transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
             overflow: hidden;
             border-radius: 4px;
         }
 
-        /* Efecto hover elegante con luz morada sutil */
         .service-card:hover {
             border-color: rgba(99, 102, 241, 0.4);
             background: rgba(99, 102, 241, 0.05);
@@ -74,35 +65,32 @@
         }
 
         /* ============================================================
-           AJUSTE CRÍTICO DE LOS NÚMEROS (DEGRADADO Y UBICACIÓN)
+           REFINAMIENTO DE NÚMEROS: MÁS PEQUEÑOS Y MÁS TRANSPARENTES
            ============================================================ */
-        
-        /* Número en la esquina INFERIOR derecha */
         .service-card .card-number {
             position: absolute;
-            right: 15px; 
-            bottom: -20px; /* Ligeramente fuera para efecto marca de agua */
-            font-size: 9rem; /* MUCHO MÁS GRANDE */
+            right: 10px; 
+            bottom: -15px;
+            /* ACHICADO: Bajamos de 9rem a 6rem */
+            font-size: 6rem; 
             font-weight: 300;
             line-height: 1;
             font-family: 'Inter', sans-serif;
             
-            /* CORTAMOS EL TEXTO PARA MOSTRAR EL DEGRADADO */
-            background: linear-gradient(135deg, rgba(168, 85, 247, 0.6) 0%, rgba(99, 102, 241, 0.6) 100%);
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.5) 0%, rgba(99, 102, 241, 0.5) 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
             
-            /* CASI INVISIBLE */
-            opacity: 0.1; 
+            /* MÁS TRANSPARENCIA: Bajamos de 0.1 a 0.06 (40% menos visible) */
+            opacity: 0.06; 
             
-            pointer-events: none; /* No interfiere con el hover */
+            pointer-events: none;
             transition: opacity 0.5s ease;
         }
 
-        /* EFECTO HOVER: Aumentamos sutilmente la visibilidad del número al hover */
         .service-card:hover .card-number {
-            opacity: 0.18;
+            opacity: 0.12;
         }
 
         .service-card h3 {
@@ -118,9 +106,11 @@
             color: #aaa;
             line-height: 1.7;
             font-size: 0.95rem;
+            /* Z-INDEX para asegurar que el texto esté sobre el número */
+            position: relative;
+            z-index: 2;
         }
 
-        /* BOTÓN VOLVER - ESTILO SEMICIRCULAR CAJERO */
         .btn-volver-container {
             margin-top: 20px;
             align-self: center;
@@ -151,18 +141,14 @@
             to { opacity: 1; }
         }
 
-        /* RESPONSIVO */
         @media (max-width: 1024px) {
             .services-grid { grid-template-columns: repeat(2, 1fr); }
-            .services-header h2 { font-size: 3rem; }
-            .service-card .card-number { font-size: 7rem; }
+            .service-card .card-number { font-size: 5rem; }
         }
 
         @media (max-width: 768px) {
             .services-grid { grid-template-columns: 1fr; }
-            .services-header h2 { font-size: 2.5rem; }
-            .service-card { padding: 40px 25px 60px 25px; }
-            .service-card .card-number { font-size: 5rem; }
+            .service-card .card-number { font-size: 4.5rem; }
         }
     </style>
 </head>
